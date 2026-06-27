@@ -1,0 +1,78 @@
+# 商品 PDF → Google Sheets
+
+Google ドライブ内の商品 PDF を **GAS + Gemini API** で読み取り、商品名・消費期限・栄養成分などを構造化してスプレッドシート「商品DB」へ追記する RPA ツールです。
+
+本番コードは [`gas/src/`](gas/src/)（Google Apps Script）。clasp でデプロイします。
+
+---
+
+## クイックスタート
+
+1. リポジトリを clone する
+2. Node.js / pnpm を用意し、依存関係を入れる:
+
+   ```powershell
+   pnpm install
+   ```
+
+3. `config/.env.example` を `config/.env` にコピーし、必要な ID・キー名を確認（**秘密情報は Git に載せない**）
+4. `.clasp.json` の `scriptId` を設定し、GAS に反映:
+
+   ```powershell
+   pnpm exec clasp push
+   ```
+
+5. セットアップ・運用手順: [`gas/README.md`](gas/README.md) と [`doc/reference/setup/gas-clasp-pnpm.md`](doc/reference/setup/gas-clasp-pnpm.md)
+
+Python（uv）は将来の補助スクリプト用に [`pyproject.toml`](pyproject.toml) のみ残しています。現時点で Python パッケージ・pytest は未配置です。
+
+---
+
+## ドキュメント
+
+### 人向け
+
+| ファイル | 内容 |
+|---|---|
+| [doc/reference/README.md](doc/reference/README.md) | 手順・早見表の目次 |
+| [doc/specs/商品PDF_引継ぎ資料.md](doc/specs/商品PDF_引継ぎ資料.md) | 要件・設計たたき台（引継ぎ正本） |
+| [doc/reference/setup/product-schema-design.md](doc/reference/setup/product-schema-design.md) | 商品DB 列設計メモ |
+| [doc/reference/migration/meishi-to-product.md](doc/reference/migration/meishi-to-product.md) | 名刺PDF版からの移行チェックリスト |
+| [doc/specs/02_要件定義.md](doc/specs/02_要件定義.md) | 要件・MoSCoW |
+| [doc/specs/04_機能一覧.md](doc/specs/04_機能一覧.md) | 機能コードと実装状況 |
+
+### エージェント向け
+
+| ファイル | 内容 |
+|---|---|
+| [AGENTS.md](AGENTS.md) | 運用フロー入口 |
+| [.cursor/rules/agent_core.mdc](.cursor/rules/agent_core.mdc) | 禁止事項・CHANGELOG 義務 |
+| [doc/ai_guidelines/Project_map.md](doc/ai_guidelines/Project_map.md) | 参照先一覧 |
+
+---
+
+## ディレクトリ概要
+
+```
+gas/src/          … 本番 GAS（clasp push）
+doc/specs/        … 要件・設計・ROADMAP・CHANGELOG
+doc/ai_guidelines/ … 実装ルール・エージェント規約
+config/           … .env.example（実値 .env は Git 除外）
+scripts/          … uv 初回セットアップ（将来の Python 用）
+pyproject.toml    … Python プロジェクト定義（パッケージ未配置）
+```
+
+---
+
+## 開発コマンド
+
+```powershell
+# GAS を Google に push
+pnpm exec clasp push
+
+# GAS エディタを開く
+pnpm exec clasp open
+
+# Python 仮想環境（補助スクリプト追加時）
+uv sync
+```

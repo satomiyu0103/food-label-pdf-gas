@@ -1,0 +1,10 @@
+[project]
+name = "food-label-pdf-gas"
+version = "0.1.0"
+description = "商品PDFからGoogle Sheetsへデータを取り込むRPAツール"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = []
+
+[tool.ruff.format]
+preview = true

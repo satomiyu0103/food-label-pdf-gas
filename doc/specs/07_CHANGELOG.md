@@ -1,0 +1,15 @@
+# CHANGELOG
+
+このファイルは [Keep a Changelog](https://keepachangelog.com/ja/1.0.0/) 形式に準拠する。
+
+---
+
+## [Unreleased]
+
+### Added
+
+- プロジェクト初期化: `ai-agent-devenv-template` ベースの doc / config / scripts 構成
+- GAS 雛形: `gas/src/`（`schema.js` に商品DB 23 列定義）
+- 引継ぎ資料: `doc/specs/商品PDF_引継ぎ資料.md`
+- スキーマ設計メモ: `doc/reference/setup/product-schema-design.md`
+- 移行チェックリスト: `doc/reference/migration/meishi-to-product.md`
