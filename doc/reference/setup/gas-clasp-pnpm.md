@@ -114,6 +114,17 @@ pnpm exec clasp clone <SCRIPT_ID>
 
 `clone` 後は `.clasp.json` が生成される。`rootDir` が意図と違う場合は `.clasp.json` を編集する。
 
+**このリポジトリ（food-label-pdf-gas / SmartShelf）** では `rootDir` を **`gas/src`** にする。`gas` のままだと GAS エディタ上で `src/config.gs` のようにサブフォルダ付きになる。
+
+```json
+{
+  "scriptId": "<スクリプトID>",
+  "rootDir": "gas/src"
+}
+```
+
+ソース・マニフェスト・HTML はすべて `gas/src/` 直下に置く（`appsscript.json`・`ControlPanel.html` を含む）。詳細は [ルート README](../../README.md) のクイックスタートと [`gas/README.md`](../../../gas/README.md) を参照。
+
 ---
 
 ## 5. 推奨ディレクトリ構成
@@ -228,6 +239,12 @@ pnpm exec clasp login
 - `rootDir` と実際のソース配置が一致しているか
 - `.claspignore` でファイルが除外されていないか
 - エディタ側で手動変更があり、`pull` で上書きされていないか
+
+### GAS エディタ上で `src/config.gs` のようにサブフォルダ付きで表示される
+
+- `.clasp.json` の `rootDir` が `gas` になっていないか確認する
+- **このリポジトリでは `rootDir` を `gas/src` にする**（`appsscript.json`・`ControlPanel.html` も `gas/src/` 直下）
+- 変更後は `pnpm exec clasp push --force` でリモートの旧 `src/` 配下を削除する
 
 ### `pnpm` が見つからない
 

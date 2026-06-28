@@ -32,7 +32,8 @@
 
 ### Changed
 
-- `NFR-OPS-002` 運用・保守: `git_workflow` にモード A/B ブランチ戦略・Plan 連携を追記。Phase 2 を ROADMAP 上で一段落に更新
+- `NFR-OPS-002` 運用・保守: 初期セットアップ手順に clasp `rootDir: gas/src` を明記（`README.md`・`gas/README.md`・`gas-clasp-pnpm.md`）
+- `NFR-OPS-002` 運用・保守: clasp `rootDir` を `gas/src` に変更し GAS エディタ上で `src/config.gs` ではなく `config.gs` として表示（`appsscript.json`・`ControlPanel.html` を `gas/src/` へ移動）
 - `FR-SHT-001` DB 書き込み: `schema.js` に `genre`・`drive_file_name` 列を追加（25 列）
 - `FR-SHT-001` DB 書き込み: 商品DB 列順を日常確認項目左・メタ・ID 右に再配置（`schema.js`）
 - `NFR-OPS-002` 運用・保守: README・`00_プロジェクト概要.md`・`gas/README.md` に運用名 SmartShelf とリポジトリ名 `food-label-pdf-gas` の対応を明記

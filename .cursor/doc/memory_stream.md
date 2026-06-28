@@ -122,3 +122,17 @@
 - タスク: ControlPanel サイドバー UI（FR-PDF-001）実装・実機確認
 - エラーと解決: showSidebar 権限不足 → script.container.ui 追加。汎用エラー → authorizeContainerUi で再認可
 - ユーザー指摘: サイドバー表示・3 操作（一括処理・シート作成・ヘッダー再適用）の実機確認済み
+
+### [2026-06-28] clasp-rootdir-flat
+
+- 日付: [2026-06-28]
+- タスク: clasp rootDir を gas/src に変更し GAS エディタをフラット表示
+- エラーと解決: なし
+- ユーザー指摘: なし
+
+### [2026-06-28] clasp-rootdir-init-docs
+
+- 日付: [2026-06-28]
+- タスク: 初期セットアップ doc に clasp rootDir gas/src を明記
+- エラーと解決: なし
+- ユーザー指摘: なし
