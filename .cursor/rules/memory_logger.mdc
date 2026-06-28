@@ -67,3 +67,8 @@ alwaysApply: true
 
 - セッション記録・CHANGELOG は [`.cursor/skills/agent-session-record/SKILL.md`](../skills/agent-session-record/SKILL.md) / [changelog-entry](../skills/changelog-entry/SKILL.md) が正本
 - 本ファイルは **チャット由来の再利用ファクト** のみ（台帳・長文ストーリーは書かない）
+
+## テンプレート同期
+
+- **ファクト追記**（`## 蓄積されたファクト`）はプロジェクト固有。テンプレにはコピーしない
+- **本ルールや memory_stream の運用定義**を変更した場合は [`.cursor/rules/template_sync.mdc`](template_sync.mdc) に従い `ai-agent-devenv-template/` を同期する

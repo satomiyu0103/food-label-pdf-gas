@@ -17,4 +17,5 @@
 
 ### Changed
 
-- `NFR-OPS-002` 運用・保守: `memory_logger.mdc`・`memory_stream.md`・`template_sync.mdc` を新設。`ai-agent-devenv-template/` を同構成に同期
+- `NFR-OPS-002` 運用・保守: ログ更新時のテンプレ同期方針を `template_sync`・`memory_logger`・Phase 3 Skill に追記
+- `NFR-OPS-002` 運用・保守: `documentation_wording.mdc` を新設し「人間」「人向け」表記を「利用者」「開発者」等へ置換

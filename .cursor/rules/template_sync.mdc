@@ -5,6 +5,10 @@ alwaysApply: true
 
 # テンプレート同期
 
+## 目的
+
+`ai-agent-devenv-template` は各プロジェクト開始時に **git clone する正本** である。プロジェクト間で Agent AI の運用（Rules・Skills・ログ手順）を同じ形に揃える。
+
 `ai-agent-devenv-template/` が存在する場合、**テンプレ由来の共有ファイル**をルートで変更・追加したら、テンプレ側にも同旨の更新を行う。
 
 ## 同期対象（ルート ↔ `ai-agent-devenv-template/`）
@@ -13,7 +17,19 @@ alwaysApply: true
 |---|---|
 | `.cursor/rules/` `.cursor/skills/` `.cursor/doc/` | エージェント基盤。構造・手順の追加変更 |
 | `doc/ai_guidelines/` | スタブ・checklists・Project_map の索引構造 |
+| `doc/records/README.md` | 記録ディレクトリの説明（構造のみ） |
 | `AGENTS.md` | クイックリファレンス |
+
+## ログ更新時の同期
+
+「ログ更新」・Phase 3 記録・memory_logger 追記のあと、運用基盤を変えていないか確認する。
+
+| 種別 | テンプレ同期 | 例 |
+|---|---|---|
+| 運用基盤 | **する** | `memory_logger.mdc` / `agent-session-record` SKILL の改訂、`.cursor/doc/memory_stream.md` の運用定義、`doc/records/` 構造、`00_開発日誌.md` の **記入ルール** セクション |
+| プロジェクト固有データ | **しない** | 開発日誌の日次エントリ、`agent_sessions/` 本文、memory_stream のファクト追記、業務内容の CHANGELOG |
+
+運用基盤を変更した場合は、プロジェクト側の記録完了後に **テンプレ正本も同旨で更新** する（`07_CHANGELOG.md` 追記を含む）。
 
 ## 手順
 
@@ -25,7 +41,7 @@ alwaysApply: true
 ## 同期しない（プロジェクト固有）
 
 - `gas/` `src/`（業務実装）・`config/.env`
-- `doc/specs/` の業務内容・`doc/records/` のセッション記録
+- `doc/specs/` の業務内容・日次開発日誌エントリ・`doc/records/agent_sessions/` の本文
 - 商品 PDF 等プロジェクト専用の reference / migration 資料
 
 ## 判定
