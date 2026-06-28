@@ -1,8 +1,19 @@
-# 商品 PDF → Google Sheets
+# 商品 PDF → Google Sheets（SmartShelf）
 
 Google ドライブ内の商品 PDF を **GAS + Gemini API** で読み取り、商品名・消費期限・栄養成分などを構造化してスプレッドシート「商品DB」へ追記する RPA ツールです。
 
 本番コードは [`gas/src/`](gas/src/)（Google Apps Script）。clasp でデプロイします。
+
+## 名称について
+
+Google 側の運用名と Git リポジトリ名は **別名** です。どちらも同じプロジェクトを指します。
+
+| 呼び方 | 名称 | 使われる場所 |
+|---|---|---|
+| **製品名（運用名）** | **SmartShelf** | Google Apps Script プロジェクト名、GCP プロジェクト名、スプレッドシートや運用ドキュメント |
+| **リポジトリ名** | **food-label-pdf-gas** | GitHub のリポジトリ名、`git clone` 先のフォルダ名、`package.json` / `pyproject.toml` の `name` |
+
+リポジトリ名は「商品ラベル PDF を GAS で処理する」用途を表す内部名として初期化時に付けています。GAS / GCP を **SmartShelf** で作成済みの場合は、`.clasp.json` の `scriptId` と Script Properties をそのプロジェクトに向ければ問題ありません。リポジトリ名を SmartShelf に揃える必要はありません（GitHub でリネームする場合はリモート URL と clone 先の更新が別途必要です）。
 
 ---
 

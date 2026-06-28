@@ -1,5 +1,7 @@
 # GAS プロジェクト（商品 PDF → Sheets）
 
+Google Apps Script 上のプロジェクト名は **SmartShelf** です。Git リポジトリ名（`food-label-pdf-gas`）とは別名です。詳細は [ルート README の「名称について」](../README.md#名称について) を参照してください。
+
 ## 概要
 
 Google ドライブ内の商品 PDF を **GAS + Gemini API** で読み取り、商品情報を構造化してスプレッドシート「商品DB」へ追記する。

@@ -66,3 +66,10 @@
 - タスク: 終了合図時のログ更新と commit/push 締め手順を memory_logger に追加
 - エラーと解決: なし
 - ユーザー指摘: 終了は休憩・就寝前の完全終了。ログ更新と同時にコミットプッシュまで自動実行
+
+### [2026-06-28] smartshelf-naming-repo-split
+
+- 日付: [2026-06-28]
+- タスク: 名刺版統合 vs 別リポ検討・SmartShelf 運用名の README 明記・リポ名は food-label-pdf-gas 維持
+- エラーと解決: なし
+- ユーザー指摘: GAS/GCP は SmartShelf。リポジトリ名は現状維持で README に対応表記
