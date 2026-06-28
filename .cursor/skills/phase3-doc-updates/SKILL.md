@@ -14,6 +14,7 @@ description: 実装完了後の doc 更新トリガー判定と更新手順。Ph
 | 実装・修正・doc 整備完了 | `doc/specs/07_CHANGELOG.md` `[Unreleased]` | ○ |
 | チャットで実装完了 | `doc/records/agent_sessions/` + `00_開発日誌.md` 索引 | ○ |
 | memory_stream 追記 or 上記セッション記録 | `ai-agent-devenv-template/` へ [template_sync](../../rules/template_sync.mdc) で同時コピー | ○ |
+| 利用者の「終了」等（セッション完了） | [memory_logger](../../rules/memory_logger.mdc) の締めで commit / push（両リポジトリ） | ○ |
 | 新機能 or 実装状況変更 | `doc/specs/04_機能一覧.md` | 条件 |
 | ファイル・ディレクトリ追加削除移動 | `05_ディレクトリ構成.md` + `src/` README ツリー | 条件 |
 | 要件・MoSCoW 変更 | `02_要件定義.md` | 条件 |

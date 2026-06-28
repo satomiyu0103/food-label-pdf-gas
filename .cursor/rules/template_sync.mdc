@@ -33,7 +33,16 @@ alwaysApply: true
 | agent-session-record によるセッション記録 | `doc/records/agent_sessions/YYYY-MM-DD_*.md` |
 | 開発日誌索引の追記 | `doc/specs/00_開発日誌.md` |
 
-上記は **プロジェクト側の記録完了直後** にテンプレへコピーする。`ai-agent-devenv-template/` 内で別途 commit / push する（親リポジトリとは別 git）。
+上記は **プロジェクト側の記録完了直後** にテンプレへコピーする。
+
+## セッション終了時の commit / push
+
+[memory_logger.mdc](memory_logger.mdc) の **セッション終了時の締め** に従う。ログ同期のあと:
+
+1. プロジェクトリポジトリ（ルート）を commit / push
+2. `ai-agent-devenv-template/` に変更があれば同リポジトリ内で commit / push
+
+変更が無いリポジトリはスキップする。`.env` 等の秘密ファイルは add しない。
 
 ## ログ更新時の同期（運用基盤のみ）
 

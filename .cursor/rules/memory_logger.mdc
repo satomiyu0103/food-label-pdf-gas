@@ -72,3 +72,33 @@ alwaysApply: true
 
 - ファクト追記後、`ai-agent-devenv-template/` が存在すれば [`.cursor/rules/template_sync.mdc`](template_sync.mdc) に従い `.cursor/doc/memory_stream.md` を **同一内容でコピー**する
 - **本ルールや memory_stream の運用定義**を変更した場合も `ai-agent-devenv-template/` を同期する
+
+## セッション終了時の締め（commit / push）
+
+### 目的
+
+「終了」等の合図は **作業セッションの完了**（休憩・就寝等）を意味する。利用者の指示タスクを **ログ更新・リモート反映まで** 完了させてから応答を終える。
+
+### トリガー
+
+ユーザー発話に次のいずれかを含むとき、**memory_stream 追記と同一ターン内** に締めを実行する。
+
+- `終了`
+- `タスク完了` / `完了しました` / `おわり` 等の **完了表明**（質問の「〜して終了？」は除く）
+
+**省略**: ユーザーが「記録不要」「コミット不要」と明示した場合。変更が git に無い場合は commit をスキップする。
+
+### 手順（順序固定）
+
+1. 本ルールに従い `memory_stream.md` へファクト追記（未追記なら実施）
+2. [template_sync](template_sync.mdc) でテンプレへログ関連ファイルをコピー（`memory_stream`・未同期の `agent_sessions`・`00_開発日誌` 等）
+3. **プロジェクトリポジトリ**（ルート）: `git status` → 変更があれば add → commit → `git push`
+4. **`ai-agent-devenv-template/`** が存在し変更があれば: 同リポジトリ内で add → commit → `git push`（親リポジトリとは別 git）
+5. チャットでコミットハッシュと push 先を簡潔に報告
+
+### commit 時の注意
+
+- `.env`・認証情報は **add しない**
+- コミットメッセージは当該セッションの変更内容に合わせる（`docs:` `feat:` 等）
+- hook 失敗時は amend せず修正して **新規 commit**
+- push は `origin` の現在ブランチ（通常 `master` / `main`）へ。force push は利用者の明示指示がある場合のみ
