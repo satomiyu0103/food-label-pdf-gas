@@ -1,0 +1,18 @@
+---
+description: Python 命名規約
+globs: src/**,tests/**
+alwaysApply: false
+---
+
+# 命名規約
+
+| 対象 | 規則 |
+|---|---|
+| 変数・関数 | `snake_case`（日本の小中学生レベルの英単語） |
+| クラス | `PascalCase` |
+| 定数 | `UPPER_SNAKE_CASE` |
+| 例外クラス | `〇〇Exception` サフィックス |
+
+直感的な理解のため平易な英単語を使う（例: Force ではなく Power 等）。
+
+テスト関数: `test_{対象}_{期待結果}`（例: `test_differ_detects_created_events`）

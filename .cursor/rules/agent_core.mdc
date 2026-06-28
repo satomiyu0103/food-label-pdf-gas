@@ -16,17 +16,18 @@ alwaysApply: true
 
 ## 実装タスク完了時（最低限）
 
-- `doc/specs/07_CHANGELOG.md` の `[Unreleased]` に **FR コード付き** 1 行（形式は `doc/ai_guidelines/agent_phase3_dod.md`）
-- 実装・設計変更をチャットで完了した場合は `doc/ai_guidelines/エージェント実装記録.md` に従いセッション記録する
+- `doc/specs/07_CHANGELOG.md` の `[Unreleased]` に **FR コード付き** 1 行（手順: `.cursor/skills/changelog-entry/SKILL.md`）
+- チャットで実装完了 → `.cursor/skills/agent-session-record/SKILL.md` に従う
 
 ## 実装着手時
 
-`src/`・`doc/`・`tests/`・`scripts/` を変更する作業では、追加で [`.cursor/rules/agent_implement.mdc`](agent_implement.mdc) が適用される。Phase 1〜3 の詳細 DoD は [`doc/ai_guidelines/agent_phase3_dod.md`](../../doc/ai_guidelines/agent_phase3_dod.md)。
+`src/`・`doc/`・`tests/`・`scripts/` を変更する作業では [`.cursor/rules/agent_implement_entry.mdc`](agent_implement_entry.mdc) が追加適用される。
 
 ## 参照早引き
 
-| 目的 | ファイル |
+| 目的 | 参照先 |
 |---|---|
-| 参照先一覧 | `doc/ai_guidelines/Project_map.md` |
-| Phase 3 更新一覧 | `doc/ai_guidelines/agent_phase3_dod.md` |
-| 開発ルール | `doc/ai_guidelines/実装規約.md` |
+| プロジェクト概要・FR コード | `.cursor/rules/project_identity.mdc` |
+| Phase 1〜3 手順 | `.cursor/skills/implementation-phase1/` 〜 `phase3-doc-updates/` |
+| 開発ルール（命名・Git・テスト） | `.cursor/rules/` 各ファイル |
+| doc 索引（人間向け） | `doc/ai_guidelines/Project_map.md` |
