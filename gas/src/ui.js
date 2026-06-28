@@ -1,7 +1,5 @@
 /**
  * スプレッドシート UI（カスタムメニュー・サイドバー）。
- *
- * TODO: onOpen / メニュー「商品DB」/ ControlPanel.html 連携を実装。
  */
 
 /**
@@ -14,7 +12,7 @@ function onOpen(e) {
     .addItem('商品DB シートを作成', 'menuCreateDataSheet')
     .addItem('ヘッダー行を再適用', 'menuApplyHeaders')
     .addSeparator()
-    .addItem('インプット PDF 一括処理', 'processAllPendingPdfs')
+    .addItem('ダミー行を追記（デバッグ）', 'menuDebugAppendDummyRecord')
     .addToUi();
 }
 
@@ -23,5 +21,9 @@ function menuCreateDataSheet() {
 }
 
 function menuApplyHeaders() {
-  throw new Error('未実装: menuApplyHeaders（ui.js）');
+  setupInitHeadersOnExisting();
+}
+
+function menuDebugAppendDummyRecord() {
+  debugAppendDummyRecord();
 }

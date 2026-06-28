@@ -85,33 +85,33 @@ flowchart TD
 
 ## 4. 初期スキーマ案
 
-初期実装では、Sheetsで検索・フィルタしやすい主要項目をフラット列にする。栄養成分は日本の食品表示でよく使う主要項目を列化し、それ以外は `nutrition_notes` に寄せる。
+初期実装では、Sheetsで検索・フィルタしやすい主要項目をフラット列にする。栄養成分は日本の食品表示でよく使う主要項目を列化し、それ以外は `nutrition_notes` に寄せる。列順は日常確認項目を左、メタ・ID を右に配置する（`schema.js` 正本）。
 
 | 列ヘッダー | 内部キー | Gemini | 備考 |
 |---|---|:---:|---|
-| 処理日時 | `processed_at` | — | GAS付与 |
-| 元ファイル | `source_file` | — | GAS付与 |
 | 商品名 | `product_name` | ○ | 必須候補 |
-| メーカー | `maker` | ○ | 販売者・製造者を含む |
-| ブランド | `brand` | ○ | 読み取れる場合のみ |
-| JANコード | `jan_code` | ○ | 重複キー候補 |
-| 商品コード | `product_code` | ○ | JANがない場合の重複キー候補 |
 | 期限種別 | `expiration_type` | ○ | 消費期限 / 賞味期限 / 不明 |
 | 期限日 | `expiration_date` | ○ | 可能なら `YYYY-MM-DD` |
-| 内容量 | `net_content` | ○ | 例: 100g、500ml |
-| 原材料 | `ingredients` | ○ | 原文ベース |
 | アレルゲン | `allergens` | ○ | 例: 小麦、卵、乳 |
-| 保存方法 | `storage_method` | ○ | 原文ベース |
-| 原産国 | `country_of_origin` | ○ | 読み取れる場合のみ |
+| 原材料 | `ingredients` | ○ | 原文ベース |
+| 内容量 | `net_content` | ○ | 例: 100g、500ml |
 | 栄養成分の基準量 | `serving_size` | ○ | 例: 100gあたり、1食あたり |
 | エネルギー kcal | `energy_kcal` | ○ | 数値または原文 |
 | たんぱく質 g | `protein_g` | ○ | 数値または原文 |
 | 脂質 g | `fat_g` | ○ | 数値または原文 |
 | 炭水化物 g | `carbohydrate_g` | ○ | 数値または原文 |
 | 食塩相当量 g | `salt_equivalent_g` | ○ | 数値または原文 |
+| メーカー | `maker` | ○ | 販売者・製造者を含む |
+| ブランド | `brand` | ○ | 読み取れる場合のみ |
+| 保存方法 | `storage_method` | ○ | 原文ベース |
+| 原産国 | `country_of_origin` | ○ | 読み取れる場合のみ |
 | 栄養成分メモ | `nutrition_notes` | ○ | その他成分、単位不明、表の注記 |
 | 読み取りメモ | `confidence_notes` | ○ | 曖昧・欠損・推定の記録 |
 | 備考 | `notes` | ○ | その他 |
+| JANコード | `jan_code` | ○ | 重複キー候補 |
+| 商品コード | `product_code` | ○ | JANがない場合の重複キー候補 |
+| 処理日時 | `processed_at` | — | GAS付与 |
+| 元ファイル | `source_file` | — | GAS付与 |
 
 Gemini JSON例:
 
