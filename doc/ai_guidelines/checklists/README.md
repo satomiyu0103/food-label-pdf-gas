@@ -1,8 +1,8 @@
 # 定期監査チェックリスト（索引）
 
-最終更新: 2026-05-30
+最終更新: 2026-06-28
 
-> **正本**: 原則・例外・トレードオフは各 **ガイド**（`doc/ai_guidelines/*.md`）にのみ書く。  
+> **正本**: 原則・例外・トレードオフは `.cursor/rules/` と `.cursor/skills/` に書く。  
 > 本フォルダは **観察可能な Yes/No** の検証項目のみ。判断が必要なときは各項目の「根拠」リンク先を読む。
 
 ## いつ使うか
@@ -13,24 +13,23 @@
 | 不定期リファクタ・設計見直し前後 | [refactor_audit.md](refactor_audit.md) |
 | カテゴリ単体の棚卸し | 下表の大分類ファイル |
 
-**通常の実装・PR 時**は Phase 1〜2 のガイドを読む。本フォルダは **常時必読にしない**（`.cursor/rules/agent_implement.mdc` 参照）。
+**通常の実装・PR 時**は Phase 1〜2 の Skills を読む。本フォルダは **常時必読にしない**（[`.cursor/rules/agent_implement_entry.mdc`](../../../.cursor/rules/agent_implement_entry.mdc) 参照）。
 
 ## 大分類一覧
 
 | 大分類 | ファイル | 根拠ガイド |
 |---|---|---|
-| セキュリティ | [security.md](security.md) | （項目ごとに specs / 実装規約を参照） |
-| 実装・品質 | [implementation.md](implementation.md) | [実装規約.md](../実装規約.md) |
-| 運用・バッチ | [operations.md](operations.md) | [安全運用ガイド.md](../安全運用ガイド.md) |
-| リファクタリング | [refactoring.md](refactoring.md) | [リファクタリング判断基準.md](../リファクタリング判断基準.md) |
-| ドキュメント・完了 | [documentation.md](documentation.md) | [agent_phase3_dod.md](../agent_phase3_dod.md)・[エージェント実装記録.md](../エージェント実装記録.md) |
+| セキュリティ | [security.md](security.md) | （項目ごとに specs / `.cursor/rules/` を参照） |
+| 実装・品質 | [implementation.md](implementation.md) | `.cursor/rules/git_workflow.mdc` 等 |
+| 運用・バッチ | [operations.md](operations.md) | `.cursor/rules/safe_operations_core.mdc` |
+| リファクタリング | [refactoring.md](refactoring.md) | `.cursor/rules/god_class_watch.mdc` |
+| ドキュメント・完了 | [documentation.md](documentation.md) | `.cursor/skills/phase3-doc-updates/SKILL.md` |
 
 ## AI への渡し方（例）
 
 ```text
-doc/ai_guidelines/checklists/refactor_audit.md を上から照合し、
-未達項目を「大分類 / 項目 / 根拠 § / 該当ファイル」付きで列挙してください。
-判断が要る項目は根拠ガイドを引用して結論を書いてください。
+.cursor/skills/audit-refactor-full/SKILL.md に従い、
+doc/ai_guidelines/checklists/refactor_audit.md を上から照合してください。
 ```
 
 ## 実施記録（任意）

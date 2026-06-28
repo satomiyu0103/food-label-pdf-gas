@@ -23,8 +23,8 @@
 ## 総合ゲート
 
 - [ ] リファクタ前の「推奨タイミング」と実施理由が記録にある
-- [ ] 振る舞い変更がある場合、unit / integration が通っている（[実装規約 §4](../実装規約.md#4-テスト規約)）
-- [ ] FR コード付き CHANGELOG 行がある（[agent_phase3_dod §1](../agent_phase3_dod.md#1-changelog必須)）
+- [ ] 振る舞い変更がある場合、unit / integration が通っている（[testing_rules.mdc](../../../.cursor/rules/testing_rules.mdc)）
+- [ ] FR コード付き CHANGELOG 行がある（[changelog-entry/SKILL.md](../../../.cursor/skills/changelog-entry/SKILL.md)）
 
 ---
 

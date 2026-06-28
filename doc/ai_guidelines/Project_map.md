@@ -3,7 +3,7 @@
 このプロジェクトは、**商品 PDF から Google Sheets へデータを取り込む RPA ツール** の実装です。
 AI エージェントが短時間で要件・設計・運用ルールを把握できるように、参照先を整理しています。
 
-> **行動規範**: [`.cursor/rules/agent_core.mdc`](../../.cursor/rules/agent_core.mdc)（常時） / [`.cursor/rules/agent_implement.mdc`](../../.cursor/rules/agent_implement.mdc)（実装時） / [agent_phase3_dod.md](agent_phase3_dod.md)（Phase 3 詳細）
+> **行動規範**: [`.cursor/rules/agent_core.mdc`](../../.cursor/rules/agent_core.mdc)（常時） / [`.cursor/rules/agent_implement_entry.mdc`](../../.cursor/rules/agent_implement_entry.mdc)（実装時） / [`.cursor/skills/phase3-doc-updates/SKILL.md`](../../.cursor/skills/phase3-doc-updates/SKILL.md)（Phase 3 詳細）
 
 ## まず読むべき 4 ファイル（Phase 1）
 
@@ -55,25 +55,46 @@ NNN: カテゴリ内の連番（001〜）。欠番は振り直さない。
 
 ---
 
+## .cursor 構成（エージェント正本）
+
+```text
+.cursor/
+├─ rules/                           ← 常時または glob 適用の制約
+│  ├─ agent_core.mdc                ← 禁止事項・CHANGELOG 最低義務
+│  ├─ agent_implement_entry.mdc     ← 実装タスク入口（Phase Skills 案内）
+│  ├─ project_identity.mdc          ← プロジェクト概要・FR/NFR 採番
+│  ├─ naming_conventions.mdc / git_workflow.mdc / code_comments.mdc
+│  ├─ testing_rules.mdc / external_api.mdc / god_class_watch.mdc
+│  └─ safe_operations_core.mdc / src_readme_policy.mdc
+└─ skills/                          ← タスク時にロードする手順
+   ├─ implementation-phase1/ phase2/ phase3-doc-updates/
+   ├─ changelog-entry/ agent-session-record/ records-split/
+   ├─ known-error-entry/ refactoring-report/ safe-operations-detail/
+   ├─ django-ui-changes/
+   └─ audit-security/ audit-implementation/ audit-operations/ …
+```
+
+`doc/ai_guidelines/` のガイド系 md は **索引スタブ**（正本は上記 `.cursor/`）。
+
 ## doc ディレクトリ構造
 
 ```text
 doc/
 ├─ ai_guidelines/
 │  ├─ Project_map.md                  ← このファイル
-│  ├─ Django_UIUX_ガイド.md          ← UI/テンプレート方針（Django 等・プロジェクト作成後に記入）
-│  ├─ 実装規約.md                    ← 命名・PR・テスト・ログ等（Human + Agent）
-│  ├─ 安全運用ガイド.md              ← ログ・通知・処理量（言語非依存の一般原則）
-│  ├─ エージェント実装記録.md        ← チャット実装のセッション記録ルール
-│  ├─ agent_phase3_dod.md            ← Phase 3 更新一覧・doc/records 分割（正本）
+│  ├─ Django_UIUX_ガイド.md          ← UI/テンプレート方針（記入式）
+│  ├─ 実装規約.md                    ← 索引 → `.cursor/rules/`
+│  ├─ 安全運用ガイド.md              ← 索引 → `.cursor/rules/` + skills
+│  ├─ エージェント実装記録.md        ← 索引 → `.cursor/skills/agent-session-record/`
+│  ├─ agent_phase3_dod.md            ← 索引 → `.cursor/skills/phase3-doc-updates/`
 │  ├─ ai_setup_check_list.md         ← セキュリティチェックリスト索引
-│  ├─ checklists/                    ← 定期監査（大分類別・ガイド参照）
+│  ├─ checklists/                    ← 定期監査（Yes/No データ正本）
 │  │  ├─ README.md
 │  │  ├─ security.md / implementation.md / operations.md
 │  │  ├─ refactoring.md / documentation.md
 │  │  ├─ post_prototype_audit.md / refactor_audit.md
-│  ├─ 試験実装のエラー.md
-│  └─ リファクタリング判断基準.md
+│  ├─ 試験実装のエラー.md            ← 既知エラー（データ正本）
+│  └─ リファクタリング判断基準.md    ← 索引 → `.cursor/rules/god_class_watch.mdc`
 ├─ Information.md                     ← テスト用ログイン情報（プロジェクト作成後に追加）
 ├─ templates/                         ← 記入用テンプレ（TPL_実機FB 等）
 ├─ reference/                         ← 人向け手順・早見表（README.md が目次）
@@ -107,11 +128,11 @@ doc/adr/
 | ファイル | 要約 |
 |---|---|
 | `doc/ai_guidelines/試験実装のエラー.md` | 既知の実装エラーと対策集。着手前に必読。 |
-| `doc/ai_guidelines/リファクタリング判断基準.md` | 神クラス予兆の判断基準とリファクタ最適タイミング（検証は `checklists/refactoring.md`）。 |
-| `doc/ai_guidelines/実装規約.md` | 命名規約・テスト規約・PR粒度・セキュリティ規約・外部API規約。 |
-| `doc/ai_guidelines/安全運用ガイド.md` | 実行ログ・例外通知・処理量制御の一般原則（実装詳細は specs 側）。 |
-| `doc/ai_guidelines/agent_phase3_dod.md` | Phase 3 完了後の doc 更新トリガー・CHANGELOG 形式・`doc/records/` 分割基準。 |
-| `doc/ai_guidelines/エージェント実装記録.md` | チャット実装のセッション記録（2 層: 開発日誌索引 + agent_sessions）。 |
+| `doc/ai_guidelines/リファクタリング判断基準.md` | 索引 → `.cursor/rules/god_class_watch.mdc`（検証: `checklists/refactoring.md`）。 |
+| `doc/ai_guidelines/実装規約.md` | 索引 → `.cursor/rules/`（命名・PR・テスト・外部 API）。 |
+| `doc/ai_guidelines/安全運用ガイド.md` | 索引 → `.cursor/rules/safe_operations_core.mdc` + skills。 |
+| `doc/ai_guidelines/agent_phase3_dod.md` | 索引 → `.cursor/skills/phase3-doc-updates/SKILL.md`。 |
+| `doc/ai_guidelines/エージェント実装記録.md` | 索引 → `.cursor/skills/agent-session-record/SKILL.md`。 |
 | `doc/ai_guidelines/Django_UIUX_ガイド.md` | Django UI/UX・テンプレート方針（任意・記入式）。 |
 | `doc/ai_guidelines/checklists/README.md` | 定期監査チェックリスト索引（プロトタイプ後・リファクタ時）。 |
 | `doc/ai_guidelines/ai_setup_check_list.md` | セキュリティチェックリスト索引（正: `checklists/security.md`）。 |
@@ -145,9 +166,9 @@ doc/adr/
 | 設計・フロー確認 | `doc/specs/03_システム設計.md` |
 | ディレクトリ構成・命名規則 | `doc/specs/05_ディレクトリ構成.md` |
 | 過去のエラーと対策 | `doc/ai_guidelines/試験実装のエラー.md` |
-| 開発ルール・セキュリティ規約 | `doc/ai_guidelines/実装規約.md` |
-| ログ・通知・処理量の一般原則 | `doc/ai_guidelines/安全運用ガイド.md` |
-| UI/テンプレート変更 | `doc/ai_guidelines/Django_UIUX_ガイド.md` |
+| 開発ルール（命名・Git・テスト） | `.cursor/rules/` 各 `*.mdc` |
+| ログ・通知・処理量 | `.cursor/rules/safe_operations_core.mdc` / `skills/safe-operations-detail/` |
+| UI/テンプレート変更 | `.cursor/skills/django-ui-changes/SKILL.md` |
 | 人向けドキュメント目次 | `doc/reference/README.md` |
 | コードの書き方・解説 | `doc/reference/getting-started/コード解説.md` |
 | Git の日常操作 | `doc/reference/cheatsheets/git.md` |
@@ -155,10 +176,10 @@ doc/adr/
 | AI チャット Enter キー設定 | `doc/reference/cheatsheets/ide-chat-enter.md` |
 | uv 環境構築 | `doc/reference/setup/uv.md` |
 | Agent 憲法（常時） | `.cursor/rules/agent_core.mdc` |
-| Agent 実装時ルール | `.cursor/rules/agent_implement.mdc` |
-| Phase 3 DoD 詳細 | `doc/ai_guidelines/agent_phase3_dod.md` |
-| セキュリティチェック（セットアップ） | `doc/ai_guidelines/checklists/security.md` |
-| プロトタイプ後の総合監査 | `doc/ai_guidelines/checklists/post_prototype_audit.md` |
-| リファクタ前後の監査 | `doc/ai_guidelines/checklists/refactor_audit.md` |
+| Agent 実装時入口 | `.cursor/rules/agent_implement_entry.mdc` |
+| Phase 1〜3 手順 | `.cursor/skills/implementation-phase1/` 〜 `phase3-doc-updates/` |
+| セキュリティチェック（セットアップ） | `.cursor/skills/audit-security/SKILL.md` |
+| プロトタイプ後の総合監査 | `.cursor/skills/audit-post-prototype/SKILL.md` |
+| リファクタ前後の監査 | `.cursor/skills/audit-refactor-full/SKILL.md` |
 | 定期監査の大分類一覧 | `doc/ai_guidelines/checklists/README.md` |
 | テスト用アカウント | `doc/Information.md` |

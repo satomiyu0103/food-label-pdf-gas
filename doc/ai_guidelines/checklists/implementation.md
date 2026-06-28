@@ -1,40 +1,40 @@
 # チェックリスト — 実装・品質
 
-最終更新: 2026-05-30
+最終更新: 2026-06-28
 
-> 根拠ガイド: [実装規約.md](../実装規約.md)
+> 根拠ガイド: [`.cursor/rules/git_workflow.mdc`](../../../.cursor/rules/git_workflow.mdc) / [`.cursor/rules/testing_rules.mdc`](../../../.cursor/rules/testing_rules.mdc) / [`.cursor/rules/external_api.mdc`](../../../.cursor/rules/external_api.mdc)
 
 ---
 
 ## A. 変更前・ブランチ
 
 - [ ] 要件定義（[02_要件定義.md](../../specs/02_要件定義.md)）と実装内容の差分を確認した  
-  - 根拠: [実装規約 §1](../実装規約.md#1-変更前確認)
+  - 根拠: [git_workflow.mdc](../../../.cursor/rules/git_workflow.mdc)
 - [ ] `main` 上で直接編集せず、作業ブランチを切ってから実装した  
-  - 根拠: [§1 作業ブランチ](../実装規約.md#作業ブランチ必須)
+  - 根拠: [git_workflow.mdc](../../../.cursor/rules/git_workflow.mdc)
 
 ## B. PR・コミット
 
 - [ ] 1 PR = 1 責務（目安 15〜300 行）  
-  - 根拠: [§2](../実装規約.md#2-pr-粒度)
+  - 根拠: [git_workflow.mdc](../../../.cursor/rules/git_workflow.mdc)
 - [ ] コミットメッセージの件名・本文が **日本語** で意図が伝わる  
-  - 根拠: [§2 コミットメッセージ](../実装規約.md#コミットメッセージ必須)
+  - 根拠: [code_comments.mdc](../../../.cursor/rules/code_comments.mdc)
 
 ## C. テスト（MVP 最低ライン）
 
 - [ ] コアロジックに unit test がある  
-  - 根拠: [§4 MVP 最低ライン](../実装規約.md#mvp-最低ライン)
+  - 根拠: [testing_rules.mdc](../../../.cursor/rules/testing_rules.mdc)
 - [ ] 結合フローに integration test（外部 API はモック）がある  
-  - 根拠: [§4](../実装規約.md#4-テスト規約)
+  - 根拠: [testing_rules.mdc](../../../.cursor/rules/testing_rules.mdc)
 - [ ] `tests/unit/` で外部 API を直接叩いていない  
-  - 根拠: [§4 コーディング規約](../実装規約.md#コーディング規約)
+  - 根拠: [testing_rules.mdc](../../../.cursor/rules/testing_rules.mdc)
 
 ## D. 外部 API
 
 - [ ] タイムアウトを設定している（無制限禁止）  
-  - 根拠: [§8](../実装規約.md#8-外部-api-呼び出しのベストプラクティス)
+  - 根拠: [external_api.mdc](../../../.cursor/rules/external_api.mdc)
 - [ ] リトライは指数バックオフで上限回数がある  
-  - 根拠: [§8](../実装規約.md#8-外部-api-呼び出しのベストプラクティス)・[安全運用ガイド §3.1](../安全運用ガイド.md#31-例外の分類とプログラムの応答)
+  - 根拠: [external_api.mdc](../../../.cursor/rules/external_api.mdc)・[safe-operations-detail/SKILL.md](../../../.cursor/skills/safe-operations-detail/SKILL.md)
 
 ## E. ディレクトリ README（該当時）
 
@@ -46,7 +46,7 @@
 - [ ] 入口ファイルが外部から判断できない  
 - [ ] agent ルール / Project_map に「このフォルダを読め」と書きたくなる  
 
-  - 根拠: [§10 README 配置](../実装規約.md#10-src-readme-配置ルール)
+  - 根拠: [src_readme_policy.mdc](../../../.cursor/rules/src_readme_policy.mdc)
 
 ## F. 禁止事項の確認
 
@@ -54,7 +54,7 @@
 - [ ] 秘密情報をコード・ログ・テストデータに書いていない  
 - [ ] 既存公開 API を事前合意なく破壊していない  
 
-  - 根拠: [§7](../実装規約.md#7-禁止事項)
+  - 根拠: [agent_core.mdc](../../../.cursor/rules/agent_core.mdc)・[git_workflow.mdc](../../../.cursor/rules/git_workflow.mdc)
 
 ---
 

@@ -469,4 +469,4 @@ git diff
 | [../getting-started/入門ガイド.md](../getting-started/入門ガイド.md) | フォルダ構成・読む順番 |
 | [../setup/uv.md](../setup/uv.md) | Python / uv 環境構築 |
 | [../README.md](../README.md) | reference 目次 |
-| [実装規約.md](../ai_guidelines/実装規約.md) | PR 粒度・命名規約 |
+| [git_workflow.mdc](../../.cursor/rules/git_workflow.mdc) | PR 粒度・命名規約 |
