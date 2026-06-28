@@ -1,8 +1,8 @@
 /**
- * スプレッドシート操作（FR-SHT-001）。
+ * スプレッドシート操作（FR-SHT-001 / FR-SHT-002）。
  *
  * schema.js の列順で行を組み立て、商品DB へ追記する。
- * 重複チェック（FR-SHT-002）は Phase 2 で実装予定。
+ * 重複時は追記をスキップし既存行番号を返す。
  */
 
 /**
@@ -10,13 +10,39 @@
  * @param {Object} geminiRecord Gemini 抽出結果
  * @param {string} sourceFile PDF ファイル名
  * @param {Date} processedAt 処理日時
- * @returns {{ row: number, skipped: boolean, duplicate_of_row: number|null }}
+ * @returns {{ row: number|null, skipped: boolean, duplicate_of_row: number|null }}
  */
 function appendProductRecord_(geminiRecord, sourceFile, processedAt) {
   if (!sourceFile) {
     throw new Error('sourceFile は必須です');
   }
   const sheet = getProductDataSheetOrThrow_();
+  const strategy = resolveDuplicateCheckStrategy_(geminiRecord);
+  if (strategy.keyType) {
+    const existingRows = loadProductSheetDataRows_(sheet);
+    const duplicateRow = findExistingProductRow_(strategy, existingRows);
+    if (duplicateRow) {
+      console.warn(
+        '[spreadsheet] 重複スキップ keyType=' +
+          strategy.keyType +
+          ' value=' +
+          strategy.normalizedValue +
+          ' row=' +
+          duplicateRow +
+          ' source_file=' +
+          sourceFile
+      );
+      return {
+        row: null,
+        skipped: true,
+        duplicate_of_row: duplicateRow,
+      };
+    }
+  } else {
+    console.warn(
+      '[spreadsheet] 重複キーが判定できないため追記を続行します: source_file=' + sourceFile
+    );
+  }
   const rowValues = buildProductRowValues_(geminiRecord, sourceFile, processedAt || new Date());
   const targetRow = sheet.getLastRow() + 1;
   // getRange(row, col, numRows, numCols) — 第3引数は行数（終了行ではない）。doc/ai_guidelines/試験実装のエラー.md 参照
@@ -27,6 +53,58 @@ function appendProductRecord_(geminiRecord, sourceFile, processedAt) {
     skipped: false,
     duplicate_of_row: null,
   };
+}
+
+/**
+ * 商品DB のデータ行（2 行目以降）を key→value の配列で読み込む。
+ *
+ * @param {GoogleAppsScript.Spreadsheet.Sheet} sheet
+ * @returns {Array<{ sheetRow: number, record: Object }>}
+ */
+function loadProductSheetDataRows_(sheet) {
+  const lastRow = sheet.getLastRow();
+  if (lastRow <= 1) {
+    return [];
+  }
+  const colCount = SHEET_SCHEMA.columns.length;
+  const numDataRows = lastRow - 1;
+  const values = sheet.getRange(2, 1, numDataRows, colCount).getValues();
+  const rows = [];
+  for (let i = 0; i < values.length; i++) {
+    const rowValues = values[i];
+    const record = {};
+    for (let c = 0; c < SHEET_SCHEMA.columns.length; c++) {
+      const col = SHEET_SCHEMA.columns[c];
+      const cell = rowValues[c];
+      record[col.key] = cell === undefined || cell === null ? '' : String(cell);
+    }
+    rows.push({
+      sheetRow: i + 2,
+      record: record,
+    });
+  }
+  return rows;
+}
+
+/**
+ * 既存行から重複行のシート行番号（1 始まり）を返す。複数一致時は最古行。
+ *
+ * @param {{ keyType: string, normalizedValue: string }} strategy
+ * @param {Array<{ sheetRow: number, record: Object }>} existingRows
+ * @returns {number|null}
+ */
+function findExistingProductRow_(strategy, existingRows) {
+  if (!strategy || !strategy.keyType || !strategy.normalizedValue) {
+    return null;
+  }
+  for (let i = 0; i < existingRows.length; i++) {
+    const row = existingRows[i];
+    const existingNormalized = normalizeExistingRowForDuplicateCheck_(strategy, row.record);
+    if (existingNormalized && existingNormalized === strategy.normalizedValue) {
+      return row.sheetRow;
+    }
+  }
+  return null;
 }
 
 /**
