@@ -62,6 +62,8 @@ NNN: カテゴリ内の連番（001〜）。欠番は振り直さない。
 ├─ rules/                           ← 常時または glob 適用の制約
 │  ├─ agent_core.mdc                ← 禁止事項・CHANGELOG 最低義務
 │  ├─ agent_implement_entry.mdc     ← 実装タスク入口（Phase Skills 案内）
+│  ├─ memory_logger.mdc             ← タスク完了時の記憶ストリーム追記
+│  ├─ template_sync.mdc            ← ai-agent-devenv-template/ 同期
 │  ├─ project_identity.mdc          ← プロジェクト概要・FR/NFR 採番
 │  ├─ naming_conventions.mdc / git_workflow.mdc / code_comments.mdc
 │  ├─ testing_rules.mdc / external_api.mdc / god_class_watch.mdc
@@ -72,6 +74,8 @@ NNN: カテゴリ内の連番（001〜）。欠番は振り直さない。
    ├─ known-error-entry/ refactoring-report/ safe-operations-detail/
    ├─ django-ui-changes/
    └─ audit-security/ audit-implementation/ audit-operations/ …
+└─ doc/
+   └── memory_stream.md              ← チャット由来ファクト（memory_logger が追記）
 ```
 
 `doc/ai_guidelines/` のガイド系 md は **索引スタブ**（正本は上記 `.cursor/`）。
@@ -177,6 +181,8 @@ doc/adr/
 | uv 環境構築 | `doc/reference/setup/uv.md` |
 | Agent 憲法（常時） | `.cursor/rules/agent_core.mdc` |
 | Agent 実装時入口 | `.cursor/rules/agent_implement_entry.mdc` |
+| 記憶ストリーム | `.cursor/doc/memory_stream.md`（`.cursor/rules/memory_logger.mdc`） |
+| テンプレ同期 | `.cursor/rules/template_sync.mdc` |
 | Phase 1〜3 手順 | `.cursor/skills/implementation-phase1/` 〜 `phase3-doc-updates/` |
 | セキュリティチェック（セットアップ） | `.cursor/skills/audit-security/SKILL.md` |
 | プロトタイプ後の総合監査 | `.cursor/skills/audit-post-prototype/SKILL.md` |

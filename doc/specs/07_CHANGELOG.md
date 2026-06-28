@@ -17,5 +17,4 @@
 
 ### Changed
 
-- `NFR-OPS-002` 運用・保守: `doc/ai_guidelines` ガイド正本を `.cursor/rules`・`.cursor/skills` へ再配置（doc は索引スタブ、`agent_implement.mdc` → `agent_implement_entry.mdc`）
-- `NFR-OPS-002` 運用・保守: `ai-agent-devenv-template/` を同構成に同期（Rules 12・Skills 17・doc スタブ化）
+- `NFR-OPS-002` 運用・保守: `memory_logger.mdc`・`memory_stream.md`・`template_sync.mdc` を新設。`ai-agent-devenv-template/` を同構成に同期

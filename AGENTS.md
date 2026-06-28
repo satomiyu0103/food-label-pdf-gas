@@ -17,4 +17,6 @@
 | 開発ルール | `.cursor/rules/` 各 `*.mdc` |
 | Phase 1〜3 手順 | `.cursor/skills/implementation-phase1/` 〜 `phase3-doc-updates/` |
 | AI エージェント向け参照先一覧 | `doc/ai_guidelines/Project_map.md` |
+| 記憶ストリーム（ファクト追記） | `.cursor/doc/memory_stream.md`（`.cursor/rules/memory_logger.mdc`） |
+| テンプレ同期（`ai-agent-devenv-template/` がある場合） | `.cursor/rules/template_sync.mdc` |
 | 後方互換（旧 agent_workflows） | `.cursor/rules/agent_workflows.mdc` |
