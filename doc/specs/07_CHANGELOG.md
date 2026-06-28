@@ -8,6 +8,8 @@
 
 ### Added
 
+- `FR-NTF-001` エラー通知: PDF 処理失敗時に Slack Incoming Webhook へ通知（`notification.js`・未設定時はスキップ）
+- `FR-PDF-001` PDF 自動検知: スプレッドシートメニュー「インプット PDF 一括処理」から `processAllPendingPdfs` を実行可能（`ui.js`）
 - `FR-PDF-004` PDF ファイル名自動変更: 抽出成功後に `{yyyymmdd}_{ジャンル}_{商品名}.pdf` 形式へリネーム（`drive.js`・`genreList.js`）
 - `FR-PDF-001` PDF 自動検知: `processAllPendingPdfs` とインプットフォルダ列挙を実装
 - `FR-PDF-003` 処理済み移動: `moveFileToProcessedFolder_` を実装（フォルダ ID 未設定時はスキップ）

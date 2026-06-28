@@ -46,7 +46,7 @@
 - [x] `ui.js` メニュー接続（シート作成・ヘッダー再適用・ダミー追記）
 - [x] `drive.js` フォルダ列挙・移動・リネーム（FR-PDF-003 / FR-PDF-004）
 - [x] `processAllPendingPdfs` バッチ（Phase 2）
-- [ ] `notification.js` Slack 本実装（Phase 2）
+- [x] `notification.js` Slack 本実装（Phase 2）
 
 ---
 
