@@ -18,6 +18,8 @@ alwaysApply: true
 
 - `doc/specs/07_CHANGELOG.md` の `[Unreleased]` に **FR コード付き** 1 行（手順: `.cursor/skills/changelog-entry/SKILL.md`）
 - チャットで実装完了 → `.cursor/skills/agent-session-record/SKILL.md` に従う
+- タスク完了時 → `.cursor/rules/memory_logger.mdc` に従い `.cursor/doc/memory_stream.md` へファクト追記
+- 共有ファイル変更時 → `.cursor/rules/template_sync.mdc` に従い `ai-agent-devenv-template/` を同期
 
 ## 実装着手時
 
@@ -31,3 +33,4 @@ alwaysApply: true
 | Phase 1〜3 手順 | `.cursor/skills/implementation-phase1/` 〜 `phase3-doc-updates/` |
 | 開発ルール（命名・Git・テスト） | `.cursor/rules/` 各ファイル |
 | doc 索引（人間向け） | `doc/ai_guidelines/Project_map.md` |
+| テンプレ同期 | `.cursor/rules/template_sync.mdc` |
