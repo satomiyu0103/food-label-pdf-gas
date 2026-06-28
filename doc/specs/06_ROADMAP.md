@@ -30,9 +30,10 @@
 
 ### Phase 2 残（Phase 3 へ繰越可）
 
-- [ ] `notification.js` — Slack エラー通知（FR-NTF-001）
+- [x] `notification.js` — Slack エラー通知（FR-NTF-001）
+- [x] `ui.js` — 一括処理メニュー・結果 alert（運用導線）
 - [ ] `spreadsheet.js` — JAN / 商品コード重複チェック（FR-SHT-002）
-- [ ] `ui.js` / `ControlPanel.html` — 運用 UI
+- [ ] `ControlPanel.html` — サイドバー運用 UI
 
 ## Phase 3: 検証・改善（未着手）
 

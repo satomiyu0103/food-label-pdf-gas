@@ -101,3 +101,10 @@
 - タスク: Phase 2 コア（FR-PDF-001/003/004）・YY.MM 期限正規化・git ブランチ戦略改訂
 - エラーと解決: pocExtract fileId 未指定 → debug* 関数と DEBUG_PDF_FILE_ID Script Property
 - ユーザー指摘: 28.08 は YY.MM で当月末。Phase 2 一段落可。Plan 実装はブランチ必須（モード B）
+
+### [2026-06-28] operation-menu-slack
+
+- 日付: [2026-06-28]
+- タスク: 運用メニュー一括処理・Slack エラー通知（FR-NTF-001）
+- エラーと解決: なし
+- ユーザー指摘: 提案 A 1→2（最短で使える状態）を優先。一括処理・Slack ダミー通知の実機確認済み
