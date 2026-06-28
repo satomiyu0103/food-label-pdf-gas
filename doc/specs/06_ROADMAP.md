@@ -18,13 +18,20 @@
 - [x] `gemini.js` — 商品 PDF 1 件 → JSON 抽出
 - [x] `main.js` — 手動 1 件処理（PDF → シート）
 
-## Phase 2: 本番フロー（未着手）
+## Phase 2: 本番フロー（一段落 — 2026-06-28）
 
-- [ ] `drive.js` — インプットフォルダ列挙・PDF 移動
-- [ ] `main.js` — 一括処理・バッチ継続
-- [ ] `notification.js` — Slack エラー通知
-- [ ] `spreadsheet.js` — JAN / 商品コード重複チェック
-- [ ] `gemini.js` — 429/500 リトライ、401 即停止
+コアパイプライン（検知 → 抽出 → シート → リネーム → 移動）は実機確認済み。以下は完了。
+
+- [x] `drive.js` — インプットフォルダ列挙・PDF 移動・リネーム（FR-PDF-004）
+- [x] `schema.js` / `gemini.js` — ジャンル列・マスタ分類・期限 YY.MM 正規化
+- [x] `spreadsheet.js` — `drive_file_name` 更新
+- [x] `main.js` — 一括処理・バッチ継続
+- [x] `gemini.js` — 429/500 リトライ、401 即停止
+
+### Phase 2 残（Phase 3 へ繰越可）
+
+- [ ] `notification.js` — Slack エラー通知（FR-NTF-001）
+- [ ] `spreadsheet.js` — JAN / 商品コード重複チェック（FR-SHT-002）
 - [ ] `ui.js` / `ControlPanel.html` — 運用 UI
 
 ## Phase 3: 検証・改善（未着手）

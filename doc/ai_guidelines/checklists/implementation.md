@@ -10,8 +10,9 @@
 
 - [ ] 要件定義（[02_要件定義.md](../../specs/02_要件定義.md)）と実装内容の差分を確認した  
   - 根拠: [git_workflow.mdc](../../../.cursor/rules/git_workflow.mdc)
-- [ ] `main` 上で直接編集せず、作業ブランチを切ってから実装した  
-  - 根拠: [git_workflow.mdc](../../../.cursor/rules/git_workflow.mdc)
+- [ ] **モード B（本番実装）**: `master` / `main` 上で直接編集せず、作業ブランチを切ってから実装した  
+  - 根拠: [git_workflow.mdc](../../../.cursor/rules/git_workflow.mdc) §ブランチ戦略
+- [ ] ブランチ名に FR コードまたは変更トピックが分かる名前を付けた（例: `feat/FR-PDF-004-pdf-rename`）
 
 ## B. PR・コミット
 

@@ -66,6 +66,9 @@ function buildProductRowValues_(geminiRecord, sourceFile, processedAt) {
     if (col.key === 'source_file') {
       return String(sourceFile);
     }
+    if (col.key === 'drive_file_name') {
+      return '';
+    }
     const value = record[col.key];
     return value === undefined || value === null ? '' : String(value);
   });
@@ -84,6 +87,22 @@ function formatProcessedAt_(dateOrString) {
 }
 
 /**
+ * 追記済み行の Drive ファイル名列を更新する（FR-PDF-004）。
+ *
+ * @param {number} row 1 始まりの行番号
+ * @param {string} driveFileName
+ */
+function updateDriveFileNameOnRow_(row, driveFileName) {
+  if (!row || row < 2) {
+    return;
+  }
+  const sheet = getProductDataSheetOrThrow_();
+  const colIndex = getColumnIndexByKey_('drive_file_name');
+  sheet.getRange(row, colIndex).setValue(driveFileName || '');
+  console.log('[spreadsheet] 行 ' + row + ' の drive_file_name を更新: ' + (driveFileName || '(空)'));
+}
+
+/**
  * デバッグ: ダミー JSON を商品DB に 1 行追記する（Gemini 不要）。
  * @returns {{ row: number, skipped: boolean, duplicate_of_row: number|null }}
  */
@@ -91,6 +110,7 @@ function debugAppendDummyRecord() {
   const now = new Date();
   const geminiRecord = buildEmptyGeminiRecord_();
   geminiRecord.product_name = 'テスト商品';
+  geminiRecord.genre = '菓子';
   geminiRecord.maker = 'テスト食品株式会社';
   geminiRecord.jan_code = '4901234567890';
   geminiRecord.expiration_type = '賞味期限';

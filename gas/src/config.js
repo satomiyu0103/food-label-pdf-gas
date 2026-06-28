@@ -11,6 +11,8 @@ const CONFIG_KEYS = {
   DRIVE_INPUT_FOLDER_ID: 'DRIVE_INPUT_FOLDER_ID',
   DRIVE_PROCESSED_FOLDER_ID: 'DRIVE_PROCESSED_FOLDER_ID',
   DRIVE_ERROR_FOLDER_ID: 'DRIVE_ERROR_FOLDER_ID',
+  /** GAS エディタから debugPocExtractPdf / debugProcessPdf 実行時の PDF fileId（デバッグ専用） */
+  DEBUG_PDF_FILE_ID: 'DEBUG_PDF_FILE_ID',
 };
 
 /**
@@ -51,4 +53,28 @@ function getDriveErrorFolderId_() {
 
 function getSlackWebhookUrl_() {
   return getScriptProperty_(CONFIG_KEYS.SLACK_WEBHOOK_URL);
+}
+
+/**
+ * Script Property が未設定のとき null を返す（オプション設定用）。
+ * @param {string} key
+ * @returns {string|null}
+ */
+function getScriptPropertyOrNull_(key) {
+  return PropertiesService.getScriptProperties().getProperty(key);
+}
+
+/**
+ * デバッグ用 PDF fileId（Script Properties: DEBUG_PDF_FILE_ID）。
+ * @returns {string}
+ */
+function getDebugPdfFileIdOrThrow_() {
+  const fileId = getScriptPropertyOrNull_(CONFIG_KEYS.DEBUG_PDF_FILE_ID);
+  if (!fileId || !String(fileId).trim()) {
+    throw new Error(
+      'Script Property DEBUG_PDF_FILE_ID が未設定です。' +
+        'GAS のプロジェクト設定 → スクリプト プロパティ、または config/.env（ローカル）に登録してください'
+    );
+  }
+  return String(fileId).trim();
 }

@@ -8,7 +8,10 @@
 
 ### Added
 
-- `FR-PDF-002` 商品情報抽出: `gemini.js` に商品 PDF → JSON 抽出（リトライ・401 即停止含む）を実装
+- `FR-PDF-004` PDF ファイル名自動変更: 抽出成功後に `{yyyymmdd}_{ジャンル}_{商品名}.pdf` 形式へリネーム（`drive.js`・`genreList.js`）
+- `FR-PDF-001` PDF 自動検知: `processAllPendingPdfs` とインプットフォルダ列挙を実装
+- `FR-PDF-003` 処理済み移動: `moveFileToProcessedFolder_` を実装（フォルダ ID 未設定時はスキップ）
+- `FR-PDF-002` 商品情報抽出: 裏面刻印 YY.MM（例 28.08/+DFL/B）の期限正規化とプロンプト強化
 - `FR-SHT-001` DB 書き込み: `setupSpreadsheet.js`・`spreadsheet.js`・`main.js` で商品DB シート作成・手動 1 件追記（PoC）を実装
 
 - プロジェクト初期化: `ai-agent-devenv-template` ベースの doc / config / scripts 構成
@@ -21,6 +24,8 @@
 
 ### Changed
 
+- `NFR-OPS-002` 運用・保守: `git_workflow` にモード A/B ブランチ戦略・Plan 連携を追記。Phase 2 を ROADMAP 上で一段落に更新
+- `FR-SHT-001` DB 書き込み: `schema.js` に `genre`・`drive_file_name` 列を追加（25 列）
 - `FR-SHT-001` DB 書き込み: 商品DB 列順を日常確認項目左・メタ・ID 右に再配置（`schema.js`）
 - `NFR-OPS-002` 運用・保守: README・`00_プロジェクト概要.md`・`gas/README.md` に運用名 SmartShelf とリポジトリ名 `food-label-pdf-gas` の対応を明記
 - `NFR-OPS-002` 運用・保守: ログ更新時のテンプレ同期方針を `template_sync`・`memory_logger`・Phase 3 Skill に追記

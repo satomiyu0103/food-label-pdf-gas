@@ -94,3 +94,10 @@
 - タスク: Phase 1 PoC 実機確認（シート作成・ヘッダ再適用・ダミー行 2 回追記）
 - エラーと解決: なし
 - ユーザー指摘: 列順は日常確認左・メタ ID 右の推奨案で schema 更新済み
+
+### [2026-06-28] phase2-pdf-rename-git-branch
+
+- 日付: [2026-06-28]
+- タスク: Phase 2 コア（FR-PDF-001/003/004）・YY.MM 期限正規化・git ブランチ戦略改訂
+- エラーと解決: pocExtract fileId 未指定 → debug* 関数と DEBUG_PDF_FILE_ID Script Property
+- ユーザー指摘: 28.08 は YY.MM で当月末。Phase 2 一段落可。Plan 実装はブランチ必須（モード B）

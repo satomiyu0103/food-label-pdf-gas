@@ -21,10 +21,10 @@
 
 | ゾーン | 位置 | 内容 |
 |---|---|---|
-| A 日常確認 | 左 | 商品名、期限、アレルゲン、原材料、内容量 |
+| A 日常確認 | 左 | 商品名、ジャンル、期限、アレルゲン、原材料、内容量 |
 | B 栄養ブロック | 左〜中央 | 基準量と主要 5 成分を連続配置 |
 | C 補足 | 中央 | メーカー、保存方法、メモ類 |
-| D メタ・ID | 右 | JAN、商品コード、処理日時、元ファイル |
+| D メタ・ID | 右 | JAN、商品コード、処理日時、元ファイル、Drive ファイル名 |
 
 列順変更後はメニュー「ヘッダー行を再適用」を実行する。既存データ行のセル位置は自動では移動しない。
 
@@ -41,28 +41,30 @@
 | # | ヘッダー | key | gemini | ゾーン | 備考 |
 |:---:|---|:---:|:---:|---|
 | 1 | 商品名 | `product_name` | ○ | A | 必須候補 |
-| 2 | 期限種別 | `expiration_type` | ○ | A | 消費期限 / 賞味期限 / 不明 |
-| 3 | 期限日 | `expiration_date` | ○ | A | YYYY-MM-DD 推奨 |
-| 4 | アレルゲン | `allergens` | ○ | A | |
-| 5 | 原材料 | `ingredients` | ○ | A | |
-| 6 | 内容量 | `net_content` | ○ | A | |
-| 7 | 栄養成分の基準量 | `serving_size` | ○ | B | |
-| 8 | エネルギー kcal | `energy_kcal` | ○ | B | |
-| 9 | たんぱく質 g | `protein_g` | ○ | B | |
-| 10 | 脂質 g | `fat_g` | ○ | B | |
-| 11 | 炭水化物 g | `carbohydrate_g` | ○ | B | |
-| 12 | 食塩相当量 g | `salt_equivalent_g` | ○ | B | |
-| 13 | メーカー | `maker` | ○ | C | |
-| 14 | ブランド | `brand` | ○ | C | |
-| 15 | 保存方法 | `storage_method` | ○ | C | |
-| 16 | 原産国 | `country_of_origin` | ○ | C | |
-| 17 | 栄養成分メモ | `nutrition_notes` | ○ | C | |
-| 18 | 読み取りメモ | `confidence_notes` | ○ | C | |
-| 19 | 備考 | `notes` | ○ | C | |
-| 20 | JANコード | `jan_code` | ○ | D | 重複キー候補 |
-| 21 | 商品コード | `product_code` | ○ | D | 重複キー候補 |
-| 22 | 処理日時 | `processed_at` | — | D | GAS付与 |
-| 23 | 元ファイル | `source_file` | — | D | GAS付与 |
+| 2 | ジャンル | `genre` | ○ | A | `genreList.js` マスタから 1 件。ファイル名にも使用 |
+| 3 | 期限種別 | `expiration_type` | ○ | A | 消費期限 / 賞味期限 / 不明 |
+| 4 | 期限日 | `expiration_date` | ○ | A | YYYY-MM-DD。裏面刻印 YY.MM（例 28.08）は当月末日に正規化 |
+| 5 | アレルゲン | `allergens` | ○ | A | |
+| 6 | 原材料 | `ingredients` | ○ | A | |
+| 7 | 内容量 | `net_content` | ○ | A | |
+| 8 | 栄養成分の基準量 | `serving_size` | ○ | B | |
+| 9 | エネルギー kcal | `energy_kcal` | ○ | B | |
+| 10 | たんぱく質 g | `protein_g` | ○ | B | |
+| 11 | 脂質 g | `fat_g` | ○ | B | |
+| 12 | 炭水化物 g | `carbohydrate_g` | ○ | B | |
+| 13 | 食塩相当量 g | `salt_equivalent_g` | ○ | B | |
+| 14 | メーカー | `maker` | ○ | C | |
+| 15 | ブランド | `brand` | ○ | C | |
+| 16 | 保存方法 | `storage_method` | ○ | C | |
+| 17 | 原産国 | `country_of_origin` | ○ | C | |
+| 18 | 栄養成分メモ | `nutrition_notes` | ○ | C | |
+| 19 | 読み取りメモ | `confidence_notes` | ○ | C | |
+| 20 | 備考 | `notes` | ○ | C | |
+| 21 | JANコード | `jan_code` | ○ | D | 重複キー候補 |
+| 22 | 商品コード | `product_code` | ○ | D | 重複キー候補 |
+| 23 | 処理日時 | `processed_at` | — | D | GAS付与 |
+| 24 | 元ファイル | `source_file` | — | D | スキャン時の元名（不変） |
+| 25 | Driveファイル名 | `drive_file_name` | — | D | リネーム後の Drive 上の名前 |
 
 ---
 

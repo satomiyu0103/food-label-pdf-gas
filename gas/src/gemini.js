@@ -59,11 +59,21 @@ function extractProductFromPdfBlob_(pdfBlob) {
 function buildGeminiPrompt_() {
   const keys = getGeminiFieldKeys_();
   const schemaExample = buildEmptyGeminiRecord_();
+  const genreListText = formatProductGenreListForPrompt_();
   return (
     'あなたは商品ラベル OCR 抽出アシスタントです。添付 PDF は商品ラベル、商品仕様書、食品表示、栄養成分表示を含む文書です。\n' +
     '読み取れる情報だけを次の JSON キーに埋めてください。読み取れない項目は空文字 "" にしてください。\n' +
-    '期限は可能なら YYYY-MM-DD 形式にしてください。判断できない場合は原文を confidence_notes に残してください。\n' +
+    'PDF は表面・裏面が同一ファイルに含まれることがあります。全ページを確認してください。\n' +
+    '期限日（expiration_date）:\n' +
+    '- 表面の「賞味期限」「消費期限」表記を優先する。\n' +
+    '- 裏面・側面の刻印（例: 28.08/+DFL/B）も期限候補とする。スラッシュ・プラス以降（DFL/B 等）は工場・ロットコードで期限日ではない。\n' +
+    '- 日本の商品では DD.MM（欧州式日.月）ではなく、YY.MM または yyyymmdd / yymmdd が多い。\n' +
+    '- 「28.08」や「28.08/+DFL/B」の「28.08」は YY.MM（2028年8月）と解釈し、expiration_date はその月の末日 YYYY-MM-DD（例: 2028-08-31）で返す。\n' +
+    '- 確信が低い場合は expiration_date を空にし、刻印の原文を confidence_notes に残す。\n' +
     '栄養成分は基準量と単位を失わないようにしてください。\n' +
+    'genre は次の一覧から最も適切な 1 件だけを選び、一覧外の自由記述は禁止です: ' +
+    genreListText +
+    '\n' +
     '複数商品が見える場合は主対象 1 件のみ返し、confidence_notes に複数商品の可能性を記録してください。\n' +
     '説明文・Markdown・コードブロックは出力しないでください。JSON オブジェクトのみを返してください。\n\n' +
     'キー一覧: ' +
@@ -260,6 +270,10 @@ function parseGeminiJsonResponse_(text) {
       record[key] = String(parsed[key]);
     }
   });
+  if (record.genre) {
+    record.genre = normalizeGenre_(record.genre);
+  }
+  applyExpirationDateNormalizationToRecord_(record);
   return record;
 }
 
@@ -285,22 +299,57 @@ function stripMarkdownCodeFence_(text) {
  * @returns {Object} 抽出 JSON
  */
 function pocExtractFromPdfByFileId(fileId) {
-  if (!fileId) {
-    throw new Error('fileId を指定してください');
+  if (!fileId || !String(fileId).trim()) {
+    throw new Error(
+      'fileId を指定してください。\n' +
+        'GAS エディタから実行する場合: debugPocExtractPdf（Script Property DEBUG_PDF_FILE_ID）または debugPocExtractFirstInputPdf を使ってください。\n' +
+        'fileId の取得: Drive で PDF を開き URL の /d/ と /view の間の文字列'
+    );
   }
   const file = DriveApp.getFileById(fileId);
   const record = extractProductFromPdf_(file);
   const summary = {
     source_file: file.getName(),
     product_name: record.product_name,
+    genre: record.genre,
     maker: record.maker,
     jan_code: record.jan_code,
+    expiration_type: record.expiration_type,
     expiration_date: record.expiration_date,
+    confidence_notes: record.confidence_notes,
   };
   const message = '[gemini] 抽出完了: ' + JSON.stringify(summary);
   Logger.log(message);
   console.log(message);
   return record;
+}
+
+/**
+ * GAS エディタ用: Script Property DEBUG_PDF_FILE_ID の PDF を Gemini 抽出のみ実行する。
+ * fileId は Drive URL の https://drive.google.com/file/d/【ここ】/view から取得。
+ *
+ * @returns {Object}
+ */
+function debugPocExtractPdf() {
+  return pocExtractFromPdfByFileId(getDebugPdfFileIdOrThrow_());
+}
+
+/**
+ * GAS エディタ用: インプットフォルダ内の先頭 PDF を Gemini 抽出のみ実行する。
+ * 要 Script Property: DRIVE_INPUT_FOLDER_ID
+ *
+ * @returns {Object}
+ */
+function debugPocExtractFirstInputPdf() {
+  const files = listInputFolderPdfFiles_();
+  if (files.length === 0) {
+    throw new Error(
+      'インプットフォルダに PDF がありません。DRIVE_INPUT_FOLDER_ID とフォルダ内の PDF を確認してください'
+    );
+  }
+  const file = files[0];
+  console.log('[gemini] 先頭 PDF を抽出: ' + file.getName() + ' id=' + file.getId());
+  return pocExtractFromPdfByFileId(file.getId());
 }
 
 /**
