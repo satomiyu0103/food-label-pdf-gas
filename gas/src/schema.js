@@ -10,33 +10,34 @@ const SHEET_SCHEMA = {
 
   /**
    * 列定義（左から順）。
+   * 左: 日常確認（商品名・期限・安全・表示）／右: メタ・ID（JAN・処理日時・元ファイル）。
    * key: Gemini JSON / コード内部キー
    * header: シート1行目の表示名
    */
   columns: [
-    { key: 'processed_at', header: '処理日時', required: true, type: 'datetime', gemini: false },
-    { key: 'source_file', header: '元ファイル', required: true, type: 'string', gemini: false },
     { key: 'product_name', header: '商品名', required: true, type: 'string', gemini: true },
-    { key: 'maker', header: 'メーカー', required: false, type: 'string', gemini: true },
-    { key: 'brand', header: 'ブランド', required: false, type: 'string', gemini: true },
-    { key: 'jan_code', header: 'JANコード', required: false, type: 'string', gemini: true, duplicateKey: true },
-    { key: 'product_code', header: '商品コード', required: false, type: 'string', gemini: true, duplicateKey: true },
     { key: 'expiration_type', header: '期限種別', required: false, type: 'string', gemini: true },
     { key: 'expiration_date', header: '期限日', required: false, type: 'string', gemini: true },
-    { key: 'net_content', header: '内容量', required: false, type: 'string', gemini: true },
-    { key: 'ingredients', header: '原材料', required: false, type: 'string', gemini: true },
     { key: 'allergens', header: 'アレルゲン', required: false, type: 'string', gemini: true },
-    { key: 'storage_method', header: '保存方法', required: false, type: 'string', gemini: true },
-    { key: 'country_of_origin', header: '原産国', required: false, type: 'string', gemini: true },
+    { key: 'ingredients', header: '原材料', required: false, type: 'string', gemini: true },
+    { key: 'net_content', header: '内容量', required: false, type: 'string', gemini: true },
     { key: 'serving_size', header: '栄養成分の基準量', required: false, type: 'string', gemini: true },
     { key: 'energy_kcal', header: 'エネルギー kcal', required: false, type: 'string', gemini: true },
     { key: 'protein_g', header: 'たんぱく質 g', required: false, type: 'string', gemini: true },
     { key: 'fat_g', header: '脂質 g', required: false, type: 'string', gemini: true },
     { key: 'carbohydrate_g', header: '炭水化物 g', required: false, type: 'string', gemini: true },
     { key: 'salt_equivalent_g', header: '食塩相当量 g', required: false, type: 'string', gemini: true },
+    { key: 'maker', header: 'メーカー', required: false, type: 'string', gemini: true },
+    { key: 'brand', header: 'ブランド', required: false, type: 'string', gemini: true },
+    { key: 'storage_method', header: '保存方法', required: false, type: 'string', gemini: true },
+    { key: 'country_of_origin', header: '原産国', required: false, type: 'string', gemini: true },
     { key: 'nutrition_notes', header: '栄養成分メモ', required: false, type: 'string', gemini: true },
     { key: 'confidence_notes', header: '読み取りメモ', required: false, type: 'string', gemini: true },
     { key: 'notes', header: '備考', required: false, type: 'string', gemini: true },
+    { key: 'jan_code', header: 'JANコード', required: false, type: 'string', gemini: true, duplicateKey: true },
+    { key: 'product_code', header: '商品コード', required: false, type: 'string', gemini: true, duplicateKey: true },
+    { key: 'processed_at', header: '処理日時', required: true, type: 'datetime', gemini: false },
+    { key: 'source_file', header: '元ファイル', required: true, type: 'string', gemini: false },
   ],
 };
 

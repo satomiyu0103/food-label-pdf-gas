@@ -21,6 +21,7 @@
 
 ### Changed
 
+- `FR-SHT-001` DB 書き込み: 商品DB 列順を日常確認項目左・メタ・ID 右に再配置（`schema.js`）
 - `NFR-OPS-002` 運用・保守: README・`00_プロジェクト概要.md`・`gas/README.md` に運用名 SmartShelf とリポジトリ名 `food-label-pdf-gas` の対応を明記
 - `NFR-OPS-002` 運用・保守: ログ更新時のテンプレ同期方針を `template_sync`・`memory_logger`・Phase 3 Skill に追記
 - `NFR-OPS-002` 運用・保守: `documentation_wording.mdc` を新設し「人間」「人向け」表記を「利用者」「開発者」等へ置換
