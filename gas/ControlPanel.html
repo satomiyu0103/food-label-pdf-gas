@@ -22,10 +22,86 @@
         color: #5f6368;
         line-height: 1.4;
       }
+      .btn {
+        display: block;
+        width: 100%;
+        box-sizing: border-box;
+        margin: 0 0 8px;
+        padding: 10px 12px;
+        border: none;
+        border-radius: 6px;
+        font-size: 13px;
+        font-weight: 500;
+        cursor: pointer;
+        text-align: left;
+      }
+      .btn-primary {
+        background: #1a73e8;
+        color: #fff;
+      }
+      .btn-primary:hover {
+        background: #1765cc;
+      }
+      .btn-secondary {
+        background: #fff;
+        color: #1a73e8;
+        border: 1px solid #dadce0;
+      }
+      .btn-secondary:hover {
+        background: #e8f0fe;
+      }
+      #status {
+        margin-top: 12px;
+        padding: 8px;
+        border-radius: 6px;
+        font-size: 11px;
+        white-space: pre-wrap;
+        display: none;
+        background: #e6f4ea;
+        color: #137333;
+      }
+      #status.error {
+        background: #fce8e6;
+        color: #c5221f;
+      }
+      .loading {
+        opacity: 0.6;
+        pointer-events: none;
+      }
     </style>
   </head>
   <body>
     <h1>商品 PDF → Sheets</h1>
-    <p>商品ラベル PDF を Gemini で解析し、商品DB シートへ転記します。UI は実装中です。</p>
+    <p>インプットフォルダの PDF を解析し、商品DB シートへ転記します。</p>
+
+    <button class="btn btn-primary" onclick="run('menuProcessAllPendingPdfs')">インプット PDF 一括処理</button>
+    <button class="btn btn-secondary" onclick="run('menuCreateDataSheet')">商品DB シートを作成</button>
+    <button class="btn btn-secondary" onclick="run('menuApplyHeaders')">ヘッダー行を再適用</button>
+
+    <div id="status"></div>
+
+    <script>
+      function run(functionName) {
+        var body = document.body;
+        var status = document.getElementById('status');
+        body.classList.add('loading');
+        status.style.display = 'none';
+        status.classList.remove('error');
+
+        google.script.run
+          .withSuccessHandler(function (message) {
+            body.classList.remove('loading');
+            status.textContent = message;
+            status.style.display = 'block';
+          })
+          .withFailureHandler(function (err) {
+            body.classList.remove('loading');
+            status.textContent = err.message || String(err);
+            status.classList.add('error');
+            status.style.display = 'block';
+          })
+          [functionName]();
+      }
+    </script>
   </body>
 </html>

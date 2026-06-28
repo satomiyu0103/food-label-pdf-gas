@@ -10,6 +10,12 @@
 
 - `FR-SHT-002` 重複チェック: JAN → 商品コード → 複合キーで既存行を検知し追記をスキップ（`schema.js`・`spreadsheet.js`）
 - `FR-PDF-001` PDF 自動検知: スプレッドシートメニュー「インプット PDF 一括処理」から `processAllPendingPdfs` を実行可能（`ui.js`）
+- `FR-PDF-001` PDF 自動検知: サイドバー操作パネル（`ControlPanel.html`）から一括処理・シート作成・ヘッダー再適用を実行可能（`ui.js`）
+
+### Fixed
+
+- `FR-PDF-001` サイドバー表示: `appsscript.json` に `script.container.ui` スコープを追加（`showSidebar` 権限エラー対応）
+
 - `FR-PDF-004` PDF ファイル名自動変更: 抽出成功後に `{yyyymmdd}_{ジャンル}_{商品名}.pdf` 形式へリネーム（`drive.js`・`genreList.js`）
 - `FR-PDF-001` PDF 自動検知: `processAllPendingPdfs` とインプットフォルダ列挙を実装
 - `FR-PDF-003` 処理済み移動: `moveFileToProcessedFolder_` を実装（フォルダ ID 未設定時はスキップ）
