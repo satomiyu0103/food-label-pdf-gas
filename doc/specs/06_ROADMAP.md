@@ -1,6 +1,6 @@
 # ROADMAP
 
-最終更新: 2026年6月27日
+最終更新: 2026年6月28日
 
 ---
 
@@ -11,12 +11,12 @@
 - [x] GAS モジュール雛形配置
 - [x] 引継ぎ資料・要件ドキュメント整備
 
-## Phase 1: PoC（未着手）
+## Phase 1: PoC（完了）
 
-- [ ] `setupSpreadsheet.js` — 商品DB シート作成・ヘッダー
-- [ ] `spreadsheet.js` — ダミー行追記確認
-- [ ] `gemini.js` — 商品 PDF 1 件 → JSON 抽出
-- [ ] `main.js` — 手動 1 件処理（PDF → シート）
+- [x] `setupSpreadsheet.js` — 商品DB シート作成・ヘッダー
+- [x] `spreadsheet.js` — ダミー行追記確認
+- [x] `gemini.js` — 商品 PDF 1 件 → JSON 抽出
+- [x] `main.js` — 手動 1 件処理（PDF → シート）
 
 ## Phase 2: 本番フロー（未着手）
 

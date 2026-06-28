@@ -8,6 +8,9 @@
 
 ### Added
 
+- `FR-PDF-002` 商品情報抽出: `gemini.js` に商品 PDF → JSON 抽出（リトライ・401 即停止含む）を実装
+- `FR-SHT-001` DB 書き込み: `setupSpreadsheet.js`・`spreadsheet.js`・`main.js` で商品DB シート作成・手動 1 件追記（PoC）を実装
+
 - プロジェクト初期化: `ai-agent-devenv-template` ベースの doc / config / scripts 構成
 - GAS 雛形: `gas/src/`（`schema.js` に商品DB 23 列定義）
 - 引継ぎ資料: `doc/specs/商品PDF_引継ぎ資料.md`

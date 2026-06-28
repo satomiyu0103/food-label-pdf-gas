@@ -73,3 +73,17 @@
 - タスク: 名刺版統合 vs 別リポ検討・SmartShelf 運用名の README 明記・リポ名は food-label-pdf-gas 維持
 - エラーと解決: なし
 - ユーザー指摘: GAS/GCP は SmartShelf。リポジトリ名は現状維持で README に対応表記
+
+### [2026-06-28] phase1-poc
+
+- 日付: [2026-06-28]
+- タスク: Phase 1 PoC（setupSpreadsheet・spreadsheet・gemini・main 単件処理）の名刺版からの移植
+- エラーと解決: なし
+- ユーザー指摘: 重複チェック・バッチ・Drive 移動は Phase 2。一括処理メニューは Phase 1 では非表示
+
+### [2026-06-28] clasp-deploy-sync
+
+- 日付: [2026-06-28]
+- タスク: GAS 連携状況確認・clasp セットアップ・scriptId 設定・pnpm clasp:push 同期完了
+- エラーと解決: 誤パッケージ clasp@1.0.0 → @google/clasp 使用。scriptId 空で Project settings not found。OAuth 再ログイン汎用エラーは既ログイン済みで回避
+- ユーザー指摘: なし
