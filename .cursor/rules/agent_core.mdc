@@ -34,4 +34,5 @@ alwaysApply: true
 | 開発ルール（命名・Git・テスト） | `.cursor/rules/` 各ファイル |
 | doc 索引（利用者向け） | `doc/ai_guidelines/Project_map.md` |
 | ドキュメント表記 | `.cursor/rules/documentation_wording.mdc` |
+| 日本語技術文書 | `.cursor/rules/japanese_tech_writing.mdc` → `japanese-tech-writing/SKILL.md` |
 | テンプレ同期 | `.cursor/rules/template_sync.mdc` |

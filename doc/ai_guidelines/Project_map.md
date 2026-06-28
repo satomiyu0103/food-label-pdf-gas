@@ -65,6 +65,8 @@ NNN: カテゴリ内の連番（001〜）。欠番は振り直さない。
 │  ├─ memory_logger.mdc             ← タスク完了時の記憶ストリーム追記
 │  ├─ template_sync.mdc            ← ai-agent-devenv-template/ 同期
 │  ├─ project_identity.mdc          ← プロジェクト概要・FR/NFR 採番
+│  ├─ documentation_wording.mdc     ← 利用者・開発者の呼び方
+│  ├─ japanese_tech_writing.mdc     ← 日本語技術文の適用タイミング
 │  ├─ naming_conventions.mdc / git_workflow.mdc / code_comments.mdc
 │  ├─ testing_rules.mdc / external_api.mdc / god_class_watch.mdc
 │  └─ safe_operations_core.mdc / src_readme_policy.mdc
@@ -73,6 +75,7 @@ NNN: カテゴリ内の連番（001〜）。欠番は振り直さない。
    ├─ changelog-entry/ agent-session-record/ records-split/
    ├─ known-error-entry/ refactoring-report/ safe-operations-detail/
    ├─ django-ui-changes/
+   ├─ japanese-tech-writing/          ← 日本語技術文の文章規範（第三者 Skill・ATTRIBUTION 参照）
    └─ audit-security/ audit-implementation/ audit-operations/ …
 └─ doc/
    └── memory_stream.md              ← チャット由来ファクト（memory_logger が追記）
@@ -184,6 +187,7 @@ doc/adr/
 | 記憶ストリーム | `.cursor/doc/memory_stream.md`（`.cursor/rules/memory_logger.mdc`） |
 | テンプレ同期 | `.cursor/rules/template_sync.mdc` |
 | ドキュメント表記 | `.cursor/rules/documentation_wording.mdc` |
+| 日本語技術文書 | `.cursor/rules/japanese_tech_writing.mdc` → `japanese-tech-writing/SKILL.md` |
 | Phase 1〜3 手順 | `.cursor/skills/implementation-phase1/` 〜 `phase3-doc-updates/` |
 | セキュリティチェック（セットアップ） | `.cursor/skills/audit-security/SKILL.md` |
 | プロトタイプ後の総合監査 | `.cursor/skills/audit-post-prototype/SKILL.md` |

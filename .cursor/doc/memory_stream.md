@@ -31,3 +31,10 @@
 - タスク: ログ更新時のテンプレ正本同期方針を Rules・Skills に追記
 - エラーと解決: なし
 - ユーザー指摘: ログ更新時は ai-agent-devenv-template も更新。clone 正本で Agent AI 運用を横展開
+
+### [2026-06-28] japanese-tech-writing
+
+- 日付: [2026-06-28]
+- タスク: japanese-tech-writing Skill 導入と japanese_tech_writing ルール・出典明記
+- エラーと解決: ライセンス gist の誤クローン削除
+- ユーザー指摘: 原本確認のため ATTRIBUTION 明記。適用タイミングのルール化とログ更新・コミットプッシュ

@@ -21,6 +21,7 @@ description: 実装完了後の doc 更新トリガー判定と更新手順。Ph
 | 技術選定の決定 | `doc/adr/NNNN-タイトル.md` 新規 | 条件 |
 | doc 新規 md or 索引変更 | `Project_map.md` | 条件 |
 | doc 表記（利用者の呼び方） | `.cursor/rules/documentation_wording.mdc` に準拠 | ○ |
+| 日本語の技術文（段落以上の執筆・推敲） | `.cursor/rules/japanese_tech_writing.mdc` に従い Skill を読了 | 条件 |
 | ログ運用基盤の変更 | `ai-agent-devenv-template/` を [template_sync](../../rules/template_sync.mdc) で同期 | 条件 |
 | 生成物・秘密ファイルパターン増 | `.gitignore` | 条件 |
 | フェーズ計画変更 | `06_ROADMAP.md` | 条件 |
