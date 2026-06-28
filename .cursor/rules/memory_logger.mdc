@@ -70,5 +70,5 @@ alwaysApply: true
 
 ## テンプレート同期
 
-- **ファクト追記**（`## 蓄積されたファクト`）はプロジェクト固有。テンプレにはコピーしない
-- **本ルールや memory_stream の運用定義**を変更した場合は [`.cursor/rules/template_sync.mdc`](template_sync.mdc) に従い `ai-agent-devenv-template/` を同期する
+- ファクト追記後、`ai-agent-devenv-template/` が存在すれば [`.cursor/rules/template_sync.mdc`](template_sync.mdc) に従い `.cursor/doc/memory_stream.md` を **同一内容でコピー**する
+- **本ルールや memory_stream の運用定義**を変更した場合も `ai-agent-devenv-template/` を同期する

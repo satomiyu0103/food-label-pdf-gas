@@ -15,33 +15,46 @@ alwaysApply: true
 
 | パス | 備考 |
 |---|---|
-| `.cursor/rules/` `.cursor/skills/` `.cursor/doc/` | エージェント基盤。構造・手順の追加変更 |
+| `.cursor/rules/` `.cursor/skills/` | エージェント基盤。構造・手順の追加変更 |
+| `.cursor/doc/memory_stream.md` | 運用定義および **ファクト追記を含む全文** |
 | `doc/ai_guidelines/` | スタブ・checklists・Project_map の索引構造 |
 | `doc/records/README.md` | 記録ディレクトリの説明（構造のみ） |
+| `doc/records/agent_sessions/` | セッション記録本文（新規・更新ファイル） |
+| `doc/specs/00_開発日誌.md` | 索引・日次エントリ（記入ルールセクションはテンプレ側で維持） |
 | `AGENTS.md` | クイックリファレンス |
 
-## ログ更新時の同期
+## ログ更新時の同期（必須）
 
-「ログ更新」・Phase 3 記録・memory_logger 追記のあと、運用基盤を変えていないか確認する。
+`ai-agent-devenv-template/` が存在するとき、次を **プロジェクトとテンプレの両方** に反映する。
+
+| トリガー | 同期先（同一相対パス） |
+|---|---|
+| memory_logger によるファクト追記 | `.cursor/doc/memory_stream.md` |
+| agent-session-record によるセッション記録 | `doc/records/agent_sessions/YYYY-MM-DD_*.md` |
+| 開発日誌索引の追記 | `doc/specs/00_開発日誌.md` |
+
+上記は **プロジェクト側の記録完了直後** にテンプレへコピーする。`ai-agent-devenv-template/` 内で別途 commit / push する（親リポジトリとは別 git）。
+
+## ログ更新時の同期（運用基盤のみ）
 
 | 種別 | テンプレ同期 | 例 |
 |---|---|---|
-| 運用基盤 | **する** | `memory_logger.mdc` / `agent-session-record` SKILL の改訂、`.cursor/doc/memory_stream.md` の運用定義、`doc/records/` 構造、`00_開発日誌.md` の **記入ルール** セクション |
-| プロジェクト固有データ | **しない** | 開発日誌の日次エントリ、`agent_sessions/` 本文、memory_stream のファクト追記、業務内容の CHANGELOG |
-
-運用基盤を変更した場合は、プロジェクト側の記録完了後に **テンプレ正本も同旨で更新** する（`07_CHANGELOG.md` 追記を含む）。
+| 運用基盤 | **する** | `memory_logger.mdc` / `agent-session-record` SKILL の改訂、`doc/records/` 構造、`00_開発日誌.md` の **記入ルール** セクション |
+| 業務固有データ | **しない** | `doc/specs/07_CHANGELOG.md` の業務実装行、`gas/` `src/`、商品 PDF 等 reference |
 
 ## 手順
 
 1. ルート側の変更を完了する
 2. 同一相対パスを `ai-agent-devenv-template/` に反映（コピーまたは同内容で編集）
-3. テンプレ側は `{{PROJECT_DESCRIPTION}}` 等の **プレースホルダを維持**（`project_identity.mdc` 等）
-4. テンプレの `doc/specs/07_CHANGELOG.md` にも該当行を追記する
+3. テンプレ側は `{{PROJECT_DESCRIPTION}}`・`{{LAST_UPDATED}}` 等の **プレースホルダを維持**（`project_identity.mdc` 等）
+4. `00_開発日誌.md` はテンプレの **記入ルール** セクションを残し、日次エントリを追記同期する
+5. 運用基盤を変えた場合はテンプレの `doc/specs/07_CHANGELOG.md` にも該当行を追記する
 
 ## 同期しない（プロジェクト固有）
 
 - `gas/` `src/`（業務実装）・`config/.env`
-- `doc/specs/` の業務内容・日次開発日誌エントリ・`doc/records/agent_sessions/` の本文
+- `doc/specs/07_CHANGELOG.md` の業務内容（運用基盤変更行を除く）
+- `doc/specs/` の要件・設計・機能一覧の業務記述
 - 商品 PDF 等プロジェクト専用の reference / migration 資料
 
 ## 判定

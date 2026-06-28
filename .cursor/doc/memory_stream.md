@@ -38,3 +38,17 @@
 - タスク: japanese-tech-writing Skill 導入と japanese_tech_writing ルール・出典明記
 - エラーと解決: ライセンス gist の誤クローン削除
 - ユーザー指摘: 原本確認のため ATTRIBUTION 明記。適用タイミングのルール化とログ更新・コミットプッシュ
+
+### [2026-06-28] template-repo-dual-push
+
+- 日付: [2026-06-28]
+- タスク: ai-agent-devenv-template 正本リポジトリへの commit/push と二リポジトリ運用手順の整理
+- エラーと解決: 親リポ未追跡のネスト clone。テンプレ側で別途 push が必要
+- ユーザー指摘: 運用基盤変更時は food-label-pdf-gas と ai-agent-devenv-template の両方を更新する
+
+### [2026-06-28] log-template-dual-sync
+
+- 日付: [2026-06-28]
+- タスク: memory_stream・agent_sessions のテンプレ同時同期ルール化と現行ログのテンプレコピー
+- エラーと解決: なし
+- ユーザー指摘: memory_stream と Agent session はプロジェクトだけでなくテンプレも同時更新

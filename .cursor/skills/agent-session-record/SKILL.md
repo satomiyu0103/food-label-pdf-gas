@@ -33,5 +33,5 @@ description: チャット実装完了時のセッション記録（2 層: 開発
 
 ## テンプレート同期
 
-- **セッション本文・開発日誌の日次エントリ**はプロジェクト固有。テンプレにはコピーしない
-- **本 SKILL の手順・必須項目・パス構造**を変更した場合、または `doc/records/README.md` / `00_開発日誌.md` の **記入ルール** を変更した場合は [`.cursor/rules/template_sync.mdc`](../../rules/template_sync.mdc) に従い `ai-agent-devenv-template/` を同期する
+- セッション本文・`00_開発日誌.md` の索引追記後、`ai-agent-devenv-template/` が存在すれば [`.cursor/rules/template_sync.mdc`](../../rules/template_sync.mdc) に従い **同一パスでコピー**する
+- **本 SKILL の手順・必須項目・パス構造**を変更した場合、または `doc/records/README.md` / `00_開発日誌.md` の **記入ルール** を変更した場合もテンプレを同期する

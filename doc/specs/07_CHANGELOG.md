@@ -21,3 +21,4 @@
 - `NFR-OPS-002` 運用・保守: ログ更新時のテンプレ同期方針を `template_sync`・`memory_logger`・Phase 3 Skill に追記
 - `NFR-OPS-002` 運用・保守: `documentation_wording.mdc` を新設し「人間」「人向け」表記を「利用者」「開発者」等へ置換
 - `NFR-OPS-002` 運用・保守: Phase 3・`agent_core`・`Project_map` に日本語技術文書ルールへの参照を追加
+- `NFR-OPS-002` 運用・保守: memory_stream・agent_sessions・開発日誌をテンプレへ同時同期する方針に変更（`template_sync`・`memory_logger`・`agent-session-record`）
