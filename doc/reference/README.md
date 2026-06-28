@@ -1,8 +1,8 @@
-# reference（人向けドキュメント）
+# reference（利用者向けドキュメント）
 
 > **入口はこのファイル**。番号ではなく **カテゴリ + ファイル名** で探す。
 
-`doc/reference/` は仕様（`doc/specs/`）やエージェント規約（`doc/ai_guidelines/`）とは別に、**人が読んで作業する手順・早見表** を置く場所です。  
+`doc/reference/` は仕様（`doc/specs/`）やエージェント規約（`doc/ai_guidelines/`）とは別に、**利用者が読んで作業する手順・早見表** を置く場所です。  
 フォルダに全部入れていること自体は問題ではなく、**1〜6 の連番で性質の違う資料を並べていたこと**が探しづらさの原因でした。
 
 ---
@@ -35,7 +35,7 @@
 
 ---
 
-## 初めて参加した人の読む順（推奨）
+## 初めて参加した利用者の読む順（推奨）
 
 1. [getting-started/入門ガイド.md](getting-started/入門ガイド.md)
 2. [setup/uv.md](setup/uv.md)（Python 開発の場合）
@@ -79,4 +79,4 @@ GAS のみ触る場合は 2 を [setup/gas-clasp-pnpm.md](setup/gas-clasp-pnpm.m
 |:---|:---|
 | `doc/specs/` | 何を作るか・設計・機能 ID・CHANGELOG（**正本**） |
 | `doc/ai_guidelines/` | エージェント向け規約・既知エラー・実装ルール |
-| `doc/reference/`（ここ） | 人向けの手順・早見表（**番号なし・カテゴリ別**） |
+| `doc/reference/`（ここ） | 利用者向けの手順・早見表（**番号なし・カテゴリ別**） |
