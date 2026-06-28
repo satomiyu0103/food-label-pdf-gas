@@ -112,6 +112,92 @@ function normalizeDuplicateValue_(key, value) {
 }
 
 /**
+ * 重複チェック用テキスト正規化（trim + 連続空白を 1 スペースに圧縮）。
+ *
+ * @param {*} value
+ * @returns {string}
+ */
+function normalizeTextForDuplicateCheck_(value) {
+  if (value === undefined || value === null) {
+    return '';
+  }
+  return String(value).trim().replace(/\s+/g, ' ');
+}
+
+/**
+ * 複合重複キー（product_name + maker + expiration_date）を生成する（FR-SHT-002）。
+ *
+ * @param {Object} record
+ * @returns {string}
+ */
+function buildCompositeDuplicateKey_(record) {
+  const rec = record || {};
+  const parts = [];
+  const productName = normalizeTextForDuplicateCheck_(rec.product_name);
+  const maker = normalizeTextForDuplicateCheck_(rec.maker);
+  const expirationIso = normalizeExpirationDateToIso_(rec.expiration_date);
+  if (productName) {
+    parts.push(productName);
+  }
+  if (maker) {
+    parts.push(maker);
+  }
+  if (expirationIso) {
+    parts.push(expirationIso);
+  }
+  if (parts.length === 0) {
+    return '';
+  }
+  return parts.join('|');
+}
+
+/**
+ * 投入レコードの重複チェック戦略を決定する（FR-SHT-002）。
+ *
+ * @param {Object} record
+ * @returns {{ keyType: string|null, normalizedValue: string }}
+ */
+function resolveDuplicateCheckStrategy_(record) {
+  const rec = record || {};
+  const janNormalized = normalizeDuplicateValue_('jan_code', rec.jan_code || '');
+  if (janNormalized) {
+    return { keyType: 'jan_code', normalizedValue: janNormalized };
+  }
+  const productCodeNormalized = normalizeDuplicateValue_('product_code', rec.product_code || '');
+  if (productCodeNormalized) {
+    return { keyType: 'product_code', normalizedValue: productCodeNormalized };
+  }
+  const compositeKey = buildCompositeDuplicateKey_(rec);
+  if (compositeKey) {
+    return { keyType: 'composite', normalizedValue: compositeKey };
+  }
+  return { keyType: null, normalizedValue: '' };
+}
+
+/**
+ * 既存行レコードから戦略に応じた正規化値を算出する。
+ *
+ * @param {{ keyType: string, normalizedValue: string }} strategy
+ * @param {Object} rowRecord
+ * @returns {string}
+ */
+function normalizeExistingRowForDuplicateCheck_(strategy, rowRecord) {
+  if (!strategy || !strategy.keyType || !rowRecord) {
+    return '';
+  }
+  if (strategy.keyType === 'jan_code') {
+    return normalizeDuplicateValue_('jan_code', rowRecord.jan_code || '');
+  }
+  if (strategy.keyType === 'product_code') {
+    return normalizeDuplicateValue_('product_code', rowRecord.product_code || '');
+  }
+  if (strategy.keyType === 'composite') {
+    return buildCompositeDuplicateKey_(rowRecord);
+  }
+  return '';
+}
+
+/**
  * 裏面刻印などから YY.MM を抽出する（例: 28.08/+DFL/B → 2028年8月）。
  *
  * @param {string} text

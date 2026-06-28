@@ -84,6 +84,14 @@ function processPdfFile_(file, processedAt) {
   console.log('[main] 処理開始: ' + sourceFile);
   const geminiRecord = extractProductFromPdf_(file);
   const appendResult = appendProductRecord_(geminiRecord, sourceFile, processedAt);
+  if (appendResult.skipped) {
+    console.warn(
+      '[main] 重複スキップ: source_file=' +
+        sourceFile +
+        ' duplicate_of_row=' +
+        appendResult.duplicate_of_row
+    );
+  }
 
   const newFileName = buildProductPdfFileName_(geminiRecord, processedAt);
   const renamedFileName = renamePdfFileSafely_(file, newFileName);

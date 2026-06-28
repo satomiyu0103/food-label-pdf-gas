@@ -79,15 +79,20 @@ function menuProcessAllPendingPdfs() {
  * @returns {string}
  */
 function formatBatchProcessSummaryMessage_(results) {
-  const successCount = results.filter(function (r) {
-    return r.ok;
+  const skippedCount = results.filter(function (r) {
+    return r.ok && r.result && r.result.skipped;
   }).length;
-  const failureCount = results.length - successCount;
+  const successCount = results.filter(function (r) {
+    return r.ok && (!r.result || !r.result.skipped);
+  }).length;
+  const failureCount = results.length - successCount - skippedCount;
   let message =
     '処理件数: ' +
     results.length +
     '\n成功: ' +
     successCount +
+    '\n重複スキップ: ' +
+    skippedCount +
     '\n失敗: ' +
     failureCount;
 
