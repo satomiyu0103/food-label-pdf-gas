@@ -21,6 +21,7 @@
 
 | トピック | 決定（1行） | セッション | 仕様・台帳 | FR / GAP |
 |---|---|---|---|---|
+| 期限接近通知 | Slack。月初 digest + 7 日前。期限管理シート分離 | [sessions/2026-07-01_expiration-alert-plan.md](../sessions/2026-07-01_expiration-alert-plan.md) | [06_ROADMAP](../../specs/06_ROADMAP.md) Phase 4、[03_システム設計](../../specs/03_システム設計.md) | FR-NTF-003、FR-SHT-003 |
 | 1 PDF 1 商品 | 運用ルールで徹底。複数行展開は見送り | [sessions/2026-07-01_1pdf1product-operational-rule.md](../sessions/2026-07-01_1pdf1product-operational-rule.md) | [02_要件定義](../../specs/02_要件定義.md)、[01_ABC GAP-A-001](../../specs/01_ABC見送り・ギャップ台帳.md) | GAP-A-001 |
 | SmartShelf 命名 | GAS/GCP は SmartShelf。Git リポ名は food-label-pdf-gas 維持 | [sessions/2026-06-28_smartshelf-naming-repo-split.md](../sessions/2026-06-28_smartshelf-naming-repo-split.md) | README、`00_プロジェクト概要` | — |
 | 名刺版とのリポ分離 | 別リポ継続。コアのみコピー流用 | 同上 | — | — |
@@ -32,6 +33,12 @@
 | GAS 本番ランタイム | Python は補助のみ。本番は `gas/src/` | [adr/0003-gas-runtime.md](../../adr/0003-gas-runtime.md) | — |
 | clasp rootDir | `gas/src` を rootDir に統一 | [sessions/2026-06-28_clasp-rootdir.md](../sessions/2026-06-28_clasp-rootdir.md) | — |
 | 重複キーと期限日 | 全キー種別で expiration_date 比較 | [sessions/2026-07-01_FR-SHT-002-expiration-dup-key.md](../sessions/2026-07-01_FR-SHT-002-expiration-dup-key.md) | FR-SHT-002 |
+
+## 通知・期限管理
+
+| トピック | 決定（1行） | セッション | 仕様・台帳 | FR |
+|---|---|---|---|---|
+| 期限接近通知 | Slack。月初 digest + 7 日前。商品DB + 期限管理の二層 | [sessions/2026-07-01_expiration-alert-plan.md](../sessions/2026-07-01_expiration-alert-plan.md) | [06_ROADMAP](../../specs/06_ROADMAP.md) Phase 4、[02_要件定義](../../specs/02_要件定義.md)、[03_システム設計](../../specs/03_システム設計.md) | FR-NTF-003、FR-SHT-003 |
 
 ## エージェント運用基盤
 

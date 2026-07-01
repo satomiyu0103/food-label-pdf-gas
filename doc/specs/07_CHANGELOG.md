@@ -9,6 +9,7 @@
 ### Changed
 
 - `NFR-OPS-002` 運用基盤: `template_sync` に同期義務（同一ターン内・省略不可）を明文化。`agent_core`・Phase 2/3 Skills を更新
+- `FR-NTF-003` / `FR-SHT-003` 期限接近通知・期限管理シート: 実装計画を specs / ROADMAP Phase 4 に追記（コード未着手）
 - `NFR-OPS-002` 運用基盤: `doc/ai/` にエージェント知識層を統合（guidelines・sessions・decisions）。`design-decision-record` SKILL 新設
 - `FR-SHT-002` 重複チェック: 全キー種別で `expiration_date` を比較。期限違いは別行、期限なしは期限不問として既存行と一致（`schema.js`・`spreadsheet.js`）
 
