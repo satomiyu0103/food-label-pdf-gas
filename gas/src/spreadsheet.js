@@ -26,7 +26,7 @@ function appendProductRecord_(geminiRecord, sourceFile, processedAt) {
         '[spreadsheet] 重複スキップ keyType=' +
           strategy.keyType +
           ' value=' +
-          strategy.normalizedValue +
+          formatDuplicateStrategyForLog_(strategy) +
           ' row=' +
           duplicateRow +
           ' source_file=' +
@@ -56,6 +56,32 @@ function appendProductRecord_(geminiRecord, sourceFile, processedAt) {
 }
 
 /**
+ * シートセルをレコード用文字列に変換する。
+ * expiration_date 列は Date 型を YYYY-MM-DD に正規化する（重複チェックの期限比較用）。
+ *
+ * @param {{ key: string, type?: string }} col
+ * @param {*} cell
+ * @returns {string}
+ */
+function sheetCellToRecordString_(col, cell) {
+  if (cell === undefined || cell === null || cell === '') {
+    return '';
+  }
+  if (Object.prototype.toString.call(cell) === '[object Date]') {
+    if (isNaN(cell.getTime())) {
+      return '';
+    }
+    if (col.key === 'expiration_date') {
+      return Utilities.formatDate(cell, 'Asia/Tokyo', 'yyyy-MM-dd');
+    }
+    if (col.type === 'datetime') {
+      return Utilities.formatDate(cell, 'Asia/Tokyo', 'yyyy-MM-dd HH:mm:ss');
+    }
+  }
+  return String(cell);
+}
+
+/**
  * 商品DB のデータ行（2 行目以降）を key→value の配列で読み込む。
  *
  * @param {GoogleAppsScript.Spreadsheet.Sheet} sheet
@@ -76,7 +102,7 @@ function loadProductSheetDataRows_(sheet) {
     for (let c = 0; c < SHEET_SCHEMA.columns.length; c++) {
       const col = SHEET_SCHEMA.columns[c];
       const cell = rowValues[c];
-      record[col.key] = cell === undefined || cell === null ? '' : String(cell);
+      record[col.key] = sheetCellToRecordString_(col, cell);
     }
     rows.push({
       sheetRow: i + 2,
@@ -89,18 +115,17 @@ function loadProductSheetDataRows_(sheet) {
 /**
  * 既存行から重複行のシート行番号（1 始まり）を返す。複数一致時は最古行。
  *
- * @param {{ keyType: string, normalizedValue: string }} strategy
+ * @param {{ keyType: string, baseValue: string, expirationIso: string }} strategy
  * @param {Array<{ sheetRow: number, record: Object }>} existingRows
  * @returns {number|null}
  */
 function findExistingProductRow_(strategy, existingRows) {
-  if (!strategy || !strategy.keyType || !strategy.normalizedValue) {
+  if (!strategy || !strategy.keyType || !strategy.baseValue) {
     return null;
   }
   for (let i = 0; i < existingRows.length; i++) {
     const row = existingRows[i];
-    const existingNormalized = normalizeExistingRowForDuplicateCheck_(strategy, row.record);
-    if (existingNormalized && existingNormalized === strategy.normalizedValue) {
+    if (isDuplicateProductRecord_(strategy, row.record)) {
       return row.sheetRow;
     }
   }
