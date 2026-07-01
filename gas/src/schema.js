@@ -125,76 +125,105 @@ function normalizeTextForDuplicateCheck_(value) {
 }
 
 /**
- * 複合重複キー（product_name + maker + expiration_date）を生成する（FR-SHT-002）。
+ * 種別ごとの重複ベースキーを生成する（FR-SHT-002）。
  *
+ * @param {string} keyType jan_code | product_code | composite
  * @param {Object} record
  * @returns {string}
  */
-function buildCompositeDuplicateKey_(record) {
+function buildDuplicateBaseValue_(keyType, record) {
   const rec = record || {};
-  const parts = [];
-  const productName = normalizeTextForDuplicateCheck_(rec.product_name);
-  const maker = normalizeTextForDuplicateCheck_(rec.maker);
-  const expirationIso = normalizeExpirationDateToIso_(rec.expiration_date);
-  if (productName) {
-    parts.push(productName);
+  if (keyType === 'jan_code') {
+    return normalizeDuplicateValue_('jan_code', rec.jan_code || '');
   }
-  if (maker) {
-    parts.push(maker);
+  if (keyType === 'product_code') {
+    return normalizeDuplicateValue_('product_code', rec.product_code || '');
   }
-  if (expirationIso) {
-    parts.push(expirationIso);
+  if (keyType === 'composite') {
+    const parts = [];
+    const productName = normalizeTextForDuplicateCheck_(rec.product_name);
+    const maker = normalizeTextForDuplicateCheck_(rec.maker);
+    if (productName) {
+      parts.push(productName);
+    }
+    if (maker) {
+      parts.push(maker);
+    }
+    if (parts.length === 0) {
+      return '';
+    }
+    return parts.join('|');
   }
-  if (parts.length === 0) {
-    return '';
-  }
-  return parts.join('|');
+  return '';
 }
 
 /**
  * 投入レコードの重複チェック戦略を決定する（FR-SHT-002）。
+ * 全キー種別で expiration_date を比較に用いる（期限なしは期限不問として既存行と一致）。
  *
  * @param {Object} record
- * @returns {{ keyType: string|null, normalizedValue: string }}
+ * @returns {{ keyType: string|null, baseValue: string, expirationIso: string }}
  */
 function resolveDuplicateCheckStrategy_(record) {
   const rec = record || {};
+  const expirationIso = normalizeExpirationDateToIso_(rec.expiration_date);
   const janNormalized = normalizeDuplicateValue_('jan_code', rec.jan_code || '');
   if (janNormalized) {
-    return { keyType: 'jan_code', normalizedValue: janNormalized };
+    return { keyType: 'jan_code', baseValue: janNormalized, expirationIso: expirationIso };
   }
   const productCodeNormalized = normalizeDuplicateValue_('product_code', rec.product_code || '');
   if (productCodeNormalized) {
-    return { keyType: 'product_code', normalizedValue: productCodeNormalized };
+    return {
+      keyType: 'product_code',
+      baseValue: productCodeNormalized,
+      expirationIso: expirationIso,
+    };
   }
-  const compositeKey = buildCompositeDuplicateKey_(rec);
-  if (compositeKey) {
-    return { keyType: 'composite', normalizedValue: compositeKey };
+  const compositeBase = buildDuplicateBaseValue_('composite', rec);
+  if (compositeBase) {
+    return { keyType: 'composite', baseValue: compositeBase, expirationIso: expirationIso };
   }
-  return { keyType: null, normalizedValue: '' };
+  return { keyType: null, baseValue: '', expirationIso: '' };
 }
 
 /**
- * 既存行レコードから戦略に応じた正規化値を算出する。
+ * 新規投入戦略と既存行が重複するか判定する（FR-SHT-002）。
+ * ベースキー一致かつ、両方に期限がある場合のみ日付不一致で非重複とする。
  *
- * @param {{ keyType: string, normalizedValue: string }} strategy
- * @param {Object} rowRecord
+ * @param {{ keyType: string, baseValue: string, expirationIso: string }} strategy
+ * @param {Object} existingRecord
+ * @returns {boolean}
+ */
+function isDuplicateProductRecord_(strategy, existingRecord) {
+  if (!strategy || !strategy.keyType || !strategy.baseValue || !existingRecord) {
+    return false;
+  }
+  const existingBase = buildDuplicateBaseValue_(strategy.keyType, existingRecord);
+  if (!existingBase || existingBase !== strategy.baseValue) {
+    return false;
+  }
+  const existingExpiration = normalizeExpirationDateToIso_(existingRecord.expiration_date);
+  const newExpiration = strategy.expirationIso || '';
+  if (newExpiration && existingExpiration && newExpiration !== existingExpiration) {
+    return false;
+  }
+  return true;
+}
+
+/**
+ * 重複チェック戦略をログ用文字列に整形する。
+ *
+ * @param {{ keyType: string, baseValue: string, expirationIso: string }} strategy
  * @returns {string}
  */
-function normalizeExistingRowForDuplicateCheck_(strategy, rowRecord) {
-  if (!strategy || !strategy.keyType || !rowRecord) {
+function formatDuplicateStrategyForLog_(strategy) {
+  if (!strategy || !strategy.baseValue) {
     return '';
   }
-  if (strategy.keyType === 'jan_code') {
-    return normalizeDuplicateValue_('jan_code', rowRecord.jan_code || '');
+  if (strategy.expirationIso) {
+    return strategy.baseValue + '|' + strategy.expirationIso;
   }
-  if (strategy.keyType === 'product_code') {
-    return normalizeDuplicateValue_('product_code', rowRecord.product_code || '');
-  }
-  if (strategy.keyType === 'composite') {
-    return buildCompositeDuplicateKey_(rowRecord);
-  }
-  return '';
+  return strategy.baseValue;
 }
 
 /**
@@ -251,6 +280,12 @@ function lastDayOfMonthIso_(year, monthOneToTwelve) {
 function normalizeExpirationDateToIso_(raw) {
   if (!raw) {
     return '';
+  }
+  if (Object.prototype.toString.call(raw) === '[object Date]') {
+    if (isNaN(raw.getTime())) {
+      return '';
+    }
+    return Utilities.formatDate(raw, 'Asia/Tokyo', 'yyyy-MM-dd');
   }
   const trimmed = String(raw).trim();
   if (/^\d{4}-\d{2}-\d{2}$/.test(trimmed)) {

@@ -6,6 +6,10 @@
 
 ## [Unreleased]
 
+### Changed
+
+- `FR-SHT-002` 重複チェック: 全キー種別で `expiration_date` を比較。期限違いは別行、期限なしは期限不問として既存行と一致（`schema.js`・`spreadsheet.js`）
+
 ### Added
 
 - `NFR-OPS-002` 運用・保守: `workspace_boundary.mdc` を新設しワークスペース外・別プロジェクトへの逸脱を禁止（`agent_core.mdc`・`AGENTS.md`）
@@ -15,6 +19,7 @@
 
 ### Fixed
 
+- `FR-SHT-002` 重複チェック: シート既存行の `expiration_date` が Date 型のとき期限比較が空扱いになり誤スキップする不具合を修正（`spreadsheet.js`・`schema.js`）
 - `FR-PDF-001` サイドバー表示: `appsscript.json` に `script.container.ui` スコープを追加（`showSidebar` 権限エラー対応）
 
 - `FR-PDF-004` PDF ファイル名自動変更: 抽出成功後に `{yyyymmdd}_{ジャンル}_{商品名}.pdf` 形式へリネーム（`drive.js`・`genreList.js`）

@@ -70,11 +70,15 @@
 
 ## 重複キー設計
 
-| 優先度 | キー | 正規化例 |
+優先順位は JAN → 商品コード → 複合キー（`product_name + maker`）。全経路で `expiration_date` を比較に用いる。期限なしは期限不問として既存行と重複とみなす。
+
+| 優先度 | ベースキー | 正規化例 |
 |:---:|---|---|
 | 1 | `jan_code` | 数字以外を除去 |
 | 2 | `product_code` | 空白除去 + 大文字化 |
-| 3 | `product_name + maker + expiration_date` | trim + 空白正規化 |
+| 3 | `product_name + maker` | trim + 空白正規化 |
+
+期限比較: `YYYY-MM-DD` 正規化。両方に期限があり日付が異なる場合のみ別行として追記する。
 
 ---
 

@@ -109,12 +109,12 @@
 - エラーと解決: なし
 - ユーザー指摘: 提案 A 1→2（最短で使える状態）を優先。一括処理・Slack ダミー通知の実機確認済み
 
-### [2026-06-28] duplicate-check-fr-sht-002
+### [2026-07-01] expiration-dup-key-fr-sht-002
 
-- 日付: [2026-06-28]
-- タスク: 重複チェック FR-SHT-002（提案 A-3）実装・検証完了
-- エラーと解決: なし
-- ユーザー指摘: ダミー実行・一括処理・重複スキップの実機確認済み。提案 A-3 完了
+- 日付: [2026-07-01]
+- タスク: FR-SHT-002 重複キーへ expiration_date を含める改訂・Date 型誤スキップ修正
+- エラーと解決: シート Date が String 化で期限空扱い → sheetCellToRecordString_・normalizeExpirationDateToIso_ Date 対応
+- ユーザー指摘: 期限違いは別行。期限なしは期限不問。GAS 実機正常動作確認済み
 
 ### [2026-06-28] control-panel-sidebar
 
