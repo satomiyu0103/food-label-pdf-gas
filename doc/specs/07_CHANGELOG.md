@@ -8,6 +8,7 @@
 
 ### Added
 
+- `NFR-OPS-002` 運用・保守: `workspace_boundary.mdc` を新設しワークスペース外・別プロジェクトへの逸脱を禁止（`agent_core.mdc`・`AGENTS.md`）
 - `FR-SHT-002` 重複チェック: JAN → 商品コード → 複合キーで既存行を検知し追記をスキップ（`schema.js`・`spreadsheet.js`）
 - `FR-PDF-001` PDF 自動検知: スプレッドシートメニュー「インプット PDF 一括処理」から `processAllPendingPdfs` を実行可能（`ui.js`）
 - `FR-PDF-001` PDF 自動検知: サイドバー操作パネル（`ControlPanel.html`）から一括処理・シート作成・ヘッダー再適用を実行可能（`ui.js`）

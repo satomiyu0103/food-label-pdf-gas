@@ -21,3 +21,16 @@
 | 記憶ストリーム（ファクト追記） | `.cursor/doc/memory_stream.md`（`.cursor/rules/memory_logger.mdc`） |
 | テンプレ同期（`ai-agent-devenv-template/` がある場合） | `.cursor/rules/template_sync.mdc` |
 | 後方互換（旧 agent_workflows） | `.cursor/rules/agent_workflows.mdc` |
+
+---
+
+## チャットでのスコープ明示（任意）
+
+別プロジェクトの話題が混ざりやすいとき、依頼の先頭に付ける。
+
+```
+[ワークスペースのみ]
+このリポジトリ以外・別プロジェクトの話はしないでください。
+```
+
+常時の境界定義: [`.cursor/rules/workspace_boundary.mdc`](.cursor/rules/workspace_boundary.mdc)

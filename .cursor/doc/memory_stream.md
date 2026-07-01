@@ -136,3 +136,10 @@
 - タスク: 初期セットアップ doc に clasp rootDir gas/src を明記
 - エラーと解決: なし
 - ユーザー指摘: なし
+
+### [2026-07-01] workspace-boundary-rule
+
+- 日付: [2026-07-01]
+- タスク: 別プロジェクト混入対策として workspace_boundary.mdc 新設・AGENTS.md に [ワークスペースのみ] 定型文追記
+- エラーと解決: AgentBoard 混入は利用者の Mac/別件作業ではなく会話文脈の作話が原因 / なし（実装）
+- ユーザー指摘: 文言は作業フォルダではなくワークスペースのみ。終了で commit/push 締め

@@ -12,6 +12,7 @@ alwaysApply: true
 - `.env` や秘密情報（API キー・パスワード等）をコード・ログ・チャットに出力すること
 - 既存テストを壊す変更を無断で行うこと
 - タスクスコープ外のリファクタ・機能追加を行うこと
+- ワークスペース外・別プロジェクトの調査・実装（利用者の明示なし）→ [workspace_boundary.mdc](workspace_boundary.mdc)
 - 実装タスク完了後に CHANGELOG 記入を省略すること
 
 ## 実装タスク完了時（最低限）
@@ -37,3 +38,4 @@ alwaysApply: true
 | ドキュメント表記 | `.cursor/rules/documentation_wording.mdc` |
 | 日本語技術文書 | `.cursor/rules/japanese_tech_writing.mdc` → `japanese-tech-writing/SKILL.md` |
 | テンプレ同期 | `.cursor/rules/template_sync.mdc` |
+| ワークスペース境界 | `.cursor/rules/workspace_boundary.mdc` |
