@@ -8,6 +8,7 @@
 
 ### Changed
 
+- docs: 1 PDF 1 商品を運用ルールとして確定。複数商品 PDF のコード展開は見送り（`02_要件定義.md`・`03_システム設計.md`・`06_ROADMAP.md`）
 - `FR-SHT-002` 重複チェック: 全キー種別で `expiration_date` を比較。期限違いは別行、期限なしは期限不問として既存行と一致（`schema.js`・`spreadsheet.js`）
 
 ### Added
