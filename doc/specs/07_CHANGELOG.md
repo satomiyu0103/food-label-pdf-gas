@@ -8,7 +8,7 @@
 
 ### Changed
 
-- `NFR-OPS-002` 運用基盤: 重複ドキュメント削除（旧 `doc/ai_guidelines/`・`doc/records/`・索引スタブ 6 件・`agent_workflows.mdc`）。正本は `doc/ai/` と `.cursor/` のみ
+- `NFR-OPS-002` 運用基盤: `template_sync` に同期義務（同一ターン内・省略不可）を明文化。`agent_core`・Phase 2/3 Skills を更新
 - `NFR-OPS-002` 運用基盤: `doc/ai/` にエージェント知識層を統合（guidelines・sessions・decisions）。`design-decision-record` SKILL 新設
 - `FR-SHT-002` 重複チェック: 全キー種別で `expiration_date` を比較。期限違いは別行、期限なしは期限不問として既存行と一致（`schema.js`・`spreadsheet.js`）
 

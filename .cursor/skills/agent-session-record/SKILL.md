@@ -37,6 +37,6 @@ description: チャット実装完了時のセッション記録（2 層: 開発
 
 ## テンプレート同期
 
-- セッション本文・`00_開発日誌.md` の索引追記後、`ai-agent-devenv-template/` が存在すれば [`.cursor/rules/template_sync.mdc`](../../rules/template_sync.mdc) に従い **同一パスでコピー**する
+- セッション本文・`00_開発日誌.md` の索引追記後、`ai-agent-devenv-template/` が存在すれば [`.cursor/rules/template_sync.mdc`](../../rules/template_sync.mdc) に従い **同一ターン内・同一パスでコピー**する（省略不可）
 - 利用者が「終了」等でセッションを閉じるときは [memory_logger.mdc](../../rules/memory_logger.mdc) の **締め** で commit / push まで行う
-- **本 SKILL の手順・必須項目・パス構造**を変更した場合、または `doc/ai/README.md` / `00_開発日誌.md` の **記入ルール** を変更した場合もテンプレを同期する
+- **本 SKILL の手順・必須項目・パス構造**を変更した場合、または `doc/ai/README.md` / `00_開発日誌.md` の **記入ルール** を変更した場合も、完了報告前にテンプレを同期する

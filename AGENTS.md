@@ -22,7 +22,7 @@
 | 設計のみの意思決定記録 | `.cursor/skills/design-decision-record/SKILL.md` |
 | 日本語技術文書の文体 | `.cursor/rules/japanese_tech_writing.mdc` → `japanese-tech-writing/SKILL.md` |
 | 記憶ストリーム（ファクト追記） | `.cursor/doc/memory_stream.md`（`.cursor/rules/memory_logger.mdc`） |
-| テンプレ同期（`ai-agent-devenv-template/` がある場合） | `.cursor/rules/template_sync.mdc` |
+| テンプレ同期（`ai-agent-devenv-template/` がある場合） | `.cursor/rules/template_sync.mdc` — **同期対象変更時は同一ターン内に必須** |
 
 ---
 

@@ -164,3 +164,10 @@
 - タスク: 重複ドキュメント削除（旧 doc/ai_guidelines・doc/records・索引スタブ 6 件・agent_workflows.mdc）。参照を doc/ai と .cursor に一本化
 - エラーと解決: テンプレ 05 を業務固有内容で上書き / git checkout で復元後 doc/ai 構造のみ再適用
 - ユーザー指摘: 積極的削除スコープ。履歴セッション・CHANGELOG 過去行は残す
+
+### [2026-07-01] template-sync-mandatory-rule
+
+- 日付: [2026-07-01]
+- タスク: template_sync 同期義務の明文化とテンプレへの即時反映ルール整備
+- エラーと解決: なし
+- ユーザー指摘: ai-agent-devenv-template 変更時は常に同期必須

@@ -73,6 +73,7 @@ alwaysApply: true
 
 - ファクト追記後、`ai-agent-devenv-template/` が存在すれば [`.cursor/rules/template_sync.mdc`](template_sync.mdc) に従い `.cursor/doc/memory_stream.md` を **同一内容でコピー**する
 - **本ルールや memory_stream の運用定義**を変更した場合も `ai-agent-devenv-template/` を同期する
+- [template_sync](template_sync.mdc) の同期対象を **1 行でも** 変更したら、ファクト追記の有無にかかわらず **同一ターン内** にテンプレへ反映する（省略不可）
 
 ## セッション終了時の締め（commit / push）
 

@@ -21,7 +21,7 @@ alwaysApply: true
 - チャットで実装完了 → `.cursor/skills/agent-session-record/SKILL.md` に従う
 - タスク完了時 → `.cursor/rules/memory_logger.mdc` に従い `.cursor/doc/memory_stream.md` へファクト追記
 - **セッション終了**（「終了」等）→ `memory_logger.mdc` の **締め** に従いテンプレ同期・commit・push まで実施
-- 共有ファイル・ログ運用基盤の変更時 → `.cursor/rules/template_sync.mdc` に従い `ai-agent-devenv-template/` を同期
+- 共有ファイル・ログ運用基盤の変更時 → [`.cursor/rules/template_sync.mdc`](template_sync.mdc) に従い **同一ターン内** に `ai-agent-devenv-template/` を同期（省略不可）
 
 ## 実装着手時
 
