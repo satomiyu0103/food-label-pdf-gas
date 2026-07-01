@@ -5,7 +5,7 @@ description: Django UI/テンプレート変更時の確認項目。テンプレ
 
 # Django UI/UX 変更
 
-プロジェクト固有の記入: `doc/ai_guidelines/Django_UIUX_ガイド.md`（未記入なら既存テンプレートパターンを踏襲）
+プロジェクト固有の記入: `doc/ai/guidelines/Django_UIUX_ガイド.md`（未記入なら既存テンプレートパターンを踏襲）
 
 ## 実施チェック
 

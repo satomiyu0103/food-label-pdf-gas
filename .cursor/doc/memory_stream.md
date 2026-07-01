@@ -150,3 +150,17 @@
 - タスク: 複数商品 PDF は運用ルールで 1 PDF 1 商品を徹底。コードによる複数行展開は見送り確定
 - エラーと解決: なし
 - ユーザー指摘: ルール縛りで 1PDF1データ形を維持。他ツール齟齬回避・応用性優先
+
+### [2026-07-01] doc-ai-knowledge-consolidation
+
+- 日付: [2026-07-01]
+- タスク: doc/ai 知識層統合・design-decision-record SKILL 新設・テンプレ同期
+- エラーと解決: テンプレ project_identity のプレースホルダ上書き / git checkout で復元
+- ユーザー指摘: doc/ai 統合をテンプレ横展開必須。設計セッションも記録対象
+
+### [2026-07-01] duplicate-doc-cleanup
+
+- 日付: [2026-07-01]
+- タスク: 重複ドキュメント削除（旧 doc/ai_guidelines・doc/records・索引スタブ 6 件・agent_workflows.mdc）。参照を doc/ai と .cursor に一本化
+- エラーと解決: テンプレ 05 を業務固有内容で上書き / git checkout で復元後 doc/ai 構造のみ再適用
+- ユーザー指摘: 積極的削除スコープ。履歴セッション・CHANGELOG 過去行は残す

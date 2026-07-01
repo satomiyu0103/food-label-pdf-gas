@@ -11,7 +11,7 @@ alwaysApply: true
 
 1. `doc/specs/02_要件定義.md` — MoSCoW・FR/NFR
 2. `doc/specs/04_機能一覧.md` — 実装状況・採番ルール
-3. `doc/ai_guidelines/試験実装のエラー.md` — 既知エラー
+3. `doc/ai/guidelines/試験実装のエラー.md` — 既知エラー
 
 1 行修正・typo・パス明示の限定変更は上記 3 件を省略可。
 

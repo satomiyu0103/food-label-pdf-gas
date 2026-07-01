@@ -1,11 +1,11 @@
 ---
 name: records-split
-description: doc/records/ への分割・移動基準と実施後処理。日誌・CHANGELOG 肥大時に使用。
+description: doc/ai/sessions/ への分割・移動基準と実施後処理。日誌・CHANGELOG 肥大時に使用。
 ---
 
-# doc/records/ 分割
+# doc/ai/sessions/ 分割
 
-`doc/specs/` は要件・台帳・直近変更。時系列長文は `doc/records/` へ逃がし、specs にはスタブ索引を残す。
+`doc/specs/` は要件・台帳・直近変更。時系列長文は `doc/ai/sessions/` へ逃がし、specs にはスタブ索引を残す。
 
 ## 作成基準（いずれか 1 つ）
 
@@ -26,7 +26,7 @@ description: doc/records/ への分割・移動基準と実施後処理。日誌
 ## 実施後必須
 
 - `05_ディレクトリ構成.md` 更新
-- `Project_map.md` ツリー・要約更新
+- `doc/ai/guidelines/Project_map.md` ツリー・要約更新
 - `07_CHANGELOG.md` に `Changed` で分割理由 1 行
 - リンク切れをリポジトリ検索で修正
-- `doc/records/README.md` を索引として新設
+- `doc/ai/README.md` を索引として維持

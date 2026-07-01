@@ -206,6 +206,6 @@ Gemini JSON例:
 - `doc/specs/03_システム設計.md`: 商品DBの列定義、Gemini JSON例、重複チェック、Workspace構成を反映
 - `doc/specs/04_機能一覧.md`: 新しいFR/NFRコードまたは既存コードの実装状況を反映
 - `doc/specs/07_CHANGELOG.md`: `[Unreleased]` にFR/NFRコード付きで1行追記
-- `doc/records/agent_sessions/`: チャットで実装した場合はセッション記録を追加
+- `doc/ai/sessions/`: チャットで実装した場合はセッション記録を追加
 
 秘密情報、実APIキー、Webhook URL、実フォルダID、個人情報を資料に記載しない。

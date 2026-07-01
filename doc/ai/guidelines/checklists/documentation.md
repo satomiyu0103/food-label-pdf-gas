@@ -11,7 +11,7 @@
 
 - [ ] `doc/specs/07_CHANGELOG.md` の `[Unreleased]` に FR コード付き 1 行以上ある  
   - 根拠: [changelog-entry/SKILL.md](../../../.cursor/skills/changelog-entry/SKILL.md)
-- [ ] チャットで実装完了した場合、`doc/records/agent_sessions/YYYY-MM-DD_*.md` と `00_開発日誌.md` 索引がある  
+- [ ] チャットで実装完了した場合、`doc/ai/sessions/YYYY-MM-DD_*.md` と `00_開発日誌.md` 索引がある  
   - 根拠: [agent-session-record/SKILL.md](../../../.cursor/skills/agent-session-record/SKILL.md)・[phase3-doc-updates/SKILL.md](../../../.cursor/skills/phase3-doc-updates/SKILL.md)
 
 ## B. 条件付き更新（該当したら必ず）
@@ -31,7 +31,7 @@
 
   - 根拠: [phase3-doc-updates/SKILL.md](../../../.cursor/skills/phase3-doc-updates/SKILL.md)
 
-## C. `doc/records/` 分割（いずれか 1 つで検討）
+## C. `doc/ai/sessions/` 分割（いずれか 1 つで検討）
 
 - [ ] 分割対象が **400 行超**  
 - [ ] **250 行超** かつ直近 1 ヶ月で **5 回以上** 追記  
@@ -43,7 +43,7 @@
 
 分割実施後:
 
-- [ ] `doc/records/README.md` がある  
+- [ ] `doc/ai/README.md` がある  
 - [ ] `05_ディレクトリ構成.md`・Project_map を更新した  
 - [ ] specs 側はスタブ＋リンク（削除しない）  
 

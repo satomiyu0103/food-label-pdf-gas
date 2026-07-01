@@ -1,6 +1,6 @@
 ---
 name: agent-session-record
-description: チャット実装完了時のセッション記録（2 層: 開発日誌索引 + agent_sessions 本文）。
+description: チャット実装完了時のセッション記録（2 層: 開発日誌索引 + sessions 本文）。
 ---
 
 # エージェント実装記録
@@ -10,15 +10,15 @@ description: チャット実装完了時のセッション記録（2 層: 開発
 | タイミング | 必須 |
 |---|---|
 | 実装タスク完了（Phase 3 同時） | ○ |
-| 設計のみ・コード未変更 | × |
+| 設計のみ・コード未変更 | ×（[design-decision-record](../design-decision-record/SKILL.md) を参照） |
 | 1 行修正・typo のみ | ×（CHANGELOG のみ） |
 
 ## 2 層構成
 
 | 層 | パス | 内容 |
 |---|---|---|
-| 索引 | `doc/specs/00_開発日誌.md` | `# YYYYMMDD` で 3〜10 行 + 詳細リンク |
-| 本文 | `doc/records/agent_sessions/YYYY-MM-DD_トピック.md` | 背景・意思決定・変更一覧・検証 |
+| 索引 | `doc/specs/00_開発日誌.md` | `## YYYYMMDD` で 3〜10 行 + 詳細リンク |
+| 本文 | `doc/ai/sessions/YYYY-MM-DD_トピック.md` | 背景・意思決定・変更一覧・検証 |
 
 ## 本文の必須項目
 
@@ -31,8 +31,12 @@ description: チャット実装完了時のセッション記録（2 層: 開発
 
 ファイル名: `YYYY-MM-DD_{短いトピック}.md`
 
+## 昇格
+
+意思決定が繰り返し参照される場合は [design-decision-record](../design-decision-record/SKILL.md) の昇格ルールに従い `doc/ai/decisions/README.md` へ索引を追記する。
+
 ## テンプレート同期
 
 - セッション本文・`00_開発日誌.md` の索引追記後、`ai-agent-devenv-template/` が存在すれば [`.cursor/rules/template_sync.mdc`](../../rules/template_sync.mdc) に従い **同一パスでコピー**する
 - 利用者が「終了」等でセッションを閉じるときは [memory_logger.mdc](../../rules/memory_logger.mdc) の **締め** で commit / push まで行う
-- **本 SKILL の手順・必須項目・パス構造**を変更した場合、または `doc/records/README.md` / `00_開発日誌.md` の **記入ルール** を変更した場合もテンプレを同期する
+- **本 SKILL の手順・必須項目・パス構造**を変更した場合、または `doc/ai/README.md` / `00_開発日誌.md` の **記入ルール** を変更した場合もテンプレを同期する

@@ -21,7 +21,7 @@ description: 実装着手前に読む doc の選定と確認手順。src/doc/tes
 | セキュリティ確認（セットアップ） | `.cursor/skills/audit-security/SKILL.md` |
 | テスト・動作確認 | `doc/Information.md` |
 | バッチ・パイプライン・通知・上限 | `.cursor/skills/safe-operations-detail/SKILL.md` |
-| プロトタイプ後・リファクタ監査 | `doc/ai_guidelines/checklists/README.md`（通常実装では読まない） |
+| プロトタイプ後・リファクタ監査 | `doc/ai/guidelines/checklists/README.md`（通常実装では読まない） |
 
 ## 省略可
 

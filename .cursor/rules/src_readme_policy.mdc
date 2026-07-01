@@ -22,7 +22,7 @@ alwaysApply: false
 
 - サブシステム直下のみ（`src/backend/` 等）
 - 末端ディレクトリには置かない
-- 新設時は `doc/ai_guidelines/Project_map.md` 早引きに追加
+- 新設時は `doc/ai/guidelines/Project_map.md` 早引きに追加
 
 ## 最小構成
 

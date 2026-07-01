@@ -29,7 +29,7 @@
 
 ```text
 .cursor/skills/audit-refactor-full/SKILL.md に従い、
-doc/ai_guidelines/checklists/refactor_audit.md を上から照合してください。
+doc/ai/guidelines/checklists/refactor_audit.md を上から照合してください。
 ```
 
 ## 実施記録（任意）

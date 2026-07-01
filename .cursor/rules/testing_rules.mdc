@@ -24,4 +24,4 @@ uv run pytest tests/unit -v
 uv run pytest tests/integration -v
 ```
 
-MVP 最低ライン: `doc/ai_guidelines/checklists/implementation.md` §C
+MVP 最低ライン: `doc/ai/guidelines/checklists/implementation.md` §C

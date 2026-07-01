@@ -65,8 +65,9 @@ alwaysApply: true
 
 ## 他ドキュメントとの関係
 
-- セッション記録・CHANGELOG は [`.cursor/skills/agent-session-record/SKILL.md`](../skills/agent-session-record/SKILL.md) / [changelog-entry](../skills/changelog-entry/SKILL.md) が正本
+- セッション記録・CHANGELOG は [agent-session-record](../skills/agent-session-record/SKILL.md) / [design-decision-record](../skills/design-decision-record/SKILL.md) / [changelog-entry](../skills/changelog-entry/SKILL.md) が正本
 - 本ファイルは **チャット由来の再利用ファクト** のみ（台帳・長文ストーリーは書かない）
+- `ユーザー指摘` が繰り返し参照される場合は [design-decision-record](../skills/design-decision-record/SKILL.md) の昇格ルールに従い `.cursor/rules/` へ昇格を検討する
 
 ## テンプレート同期
 

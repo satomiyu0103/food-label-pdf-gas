@@ -265,7 +265,7 @@ corepack prepare pnpm@latest --activate
 | Python 環境 | [uv.md](uv.md) |
 | Git 操作    | [../cheatsheets/git.md](../cheatsheets/git.md) |
 | reference 目次 | [../README.md](../README.md) |
-| エラー記録     | [../ai_guidelines/試験実装のエラー.md](../ai_guidelines/試験実装のエラー.md) |
+| エラー記録     | [../ai/guidelines/試験実装のエラー.md](../ai/guidelines/試験実装のエラー.md) |
 
 
 ---

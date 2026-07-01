@@ -13,14 +13,16 @@
 | 要件確認 | `doc/specs/02_要件定義.md` |
 | 機能一覧・実装状況 | `doc/specs/04_機能一覧.md` |
 | 設計・フロー確認 | `doc/specs/03_システム設計.md` |
-| 過去のエラー確認 | `doc/ai_guidelines/試験実装のエラー.md` |
+| 過去のエラー確認 | `doc/ai/guidelines/試験実装のエラー.md` |
+| 意思決定・セッション索引 | `doc/ai/decisions/README.md` |
+| エージェント知識の入口 | `doc/ai/README.md` |
 | 開発ルール | `.cursor/rules/` 各 `*.mdc` |
 | Phase 1〜3 手順 | `.cursor/skills/implementation-phase1/` 〜 `phase3-doc-updates/` |
-| AI エージェント向け参照先一覧 | `doc/ai_guidelines/Project_map.md` |
+| AI エージェント向け参照先一覧 | `doc/ai/guidelines/Project_map.md` |
+| 設計のみの意思決定記録 | `.cursor/skills/design-decision-record/SKILL.md` |
 | 日本語技術文書の文体 | `.cursor/rules/japanese_tech_writing.mdc` → `japanese-tech-writing/SKILL.md` |
 | 記憶ストリーム（ファクト追記） | `.cursor/doc/memory_stream.md`（`.cursor/rules/memory_logger.mdc`） |
 | テンプレ同期（`ai-agent-devenv-template/` がある場合） | `.cursor/rules/template_sync.mdc` |
-| 後方互換（旧 agent_workflows） | `.cursor/rules/agent_workflows.mdc` |
 
 ---
 

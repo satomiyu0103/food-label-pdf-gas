@@ -75,7 +75,8 @@ Python（uv）は将来の補助スクリプト用に [`pyproject.toml`](pyproje
 |---|---|
 | [AGENTS.md](AGENTS.md) | 運用フロー入口 |
 | [.cursor/rules/agent_core.mdc](.cursor/rules/agent_core.mdc) | 禁止事項・CHANGELOG 義務 |
-| [doc/ai_guidelines/Project_map.md](doc/ai_guidelines/Project_map.md) | 参照先一覧 |
+| [doc/ai/README.md](doc/ai/README.md) | エージェント知識層の入口 |
+| [doc/ai/guidelines/Project_map.md](doc/ai/guidelines/Project_map.md) | 参照先一覧 |
 
 ---
 
@@ -85,7 +86,7 @@ Python（uv）は将来の補助スクリプト用に [`pyproject.toml`](pyproje
 gas/src/          … 本番 GAS（clasp rootDir。push 後は GAS 上でルート直下）
 .clasp.json       … rootDir は gas/src（必須）
 doc/specs/        … 要件・設計・ROADMAP・CHANGELOG
-doc/ai_guidelines/ … 実装ルール・エージェント規約
+doc/ai/             … エージェント知識層（guidelines・sessions・decisions）
 config/           … .env.example（実値 .env は Git 除外）
 scripts/          … uv 初回セットアップ（将来の Python 用）
 pyproject.toml    … Python プロジェクト定義（パッケージ未配置）

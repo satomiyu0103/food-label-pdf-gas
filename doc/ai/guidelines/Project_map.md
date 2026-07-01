@@ -3,14 +3,14 @@
 このプロジェクトは、**商品 PDF から Google Sheets へデータを取り込む RPA ツール** の実装です。
 AI エージェントが短時間で要件・設計・運用ルールを把握できるように、参照先を整理しています。
 
-> **行動規範**: [`.cursor/rules/agent_core.mdc`](../../.cursor/rules/agent_core.mdc)（常時） / [`.cursor/rules/agent_implement_entry.mdc`](../../.cursor/rules/agent_implement_entry.mdc)（実装時） / [`.cursor/skills/phase3-doc-updates/SKILL.md`](../../.cursor/skills/phase3-doc-updates/SKILL.md)（Phase 3 詳細）
+> **行動規範**: [`.cursor/rules/agent_core.mdc`](../../../.cursor/rules/agent_core.mdc)（常時） / [`.cursor/rules/agent_implement_entry.mdc`](../../../.cursor/rules/agent_implement_entry.mdc)（実装時） / [`.cursor/skills/phase3-doc-updates/SKILL.md`](../../../.cursor/skills/phase3-doc-updates/SKILL.md)（Phase 3 詳細）
 
 ## まず読むべき 4 ファイル（Phase 1）
 
-1. `doc/ai_guidelines/Project_map.md` — このファイル（参照先一覧）
+1. `doc/ai/README.md` — 知識層の入口（本ファイルへのリンクあり）
 2. `doc/specs/02_要件定義.md` — 実装範囲（MoSCoW）と非機能要件（FR/NFR コード）
 3. `doc/specs/04_機能一覧.md` — 全機能の実装状況と採番ルール
-4. `doc/ai_guidelines/試験実装のエラー.md` — 既知エラーと再発防止策
+4. `doc/ai/guidelines/試験実装のエラー.md` — 既知エラーと再発防止策
 
 ---
 
@@ -72,7 +72,7 @@ NNN: カテゴリ内の連番（001〜）。欠番は振り直さない。
 │  └─ safe_operations_core.mdc / src_readme_policy.mdc
 └─ skills/                          ← タスク時にロードする手順
    ├─ implementation-phase1/ phase2/ phase3-doc-updates/
-   ├─ changelog-entry/ agent-session-record/ records-split/
+   ├─ changelog-entry/ agent-session-record/ design-decision-record/ records-split/
    ├─ known-error-entry/ refactoring-report/ safe-operations-detail/
    ├─ django-ui-changes/
    ├─ japanese-tech-writing/          ← 日本語技術文の文章規範（第三者 Skill・ATTRIBUTION 参照）
@@ -81,27 +81,22 @@ NNN: カテゴリ内の連番（001〜）。欠番は振り直さない。
    └── memory_stream.md              ← チャット由来ファクト（memory_logger が追記）
 ```
 
-`doc/ai_guidelines/` のガイド系 md は **索引スタブ**（正本は上記 `.cursor/`）。
+`doc/ai/guidelines/` は **Project_map（本ファイル）・checklists・既知エラー** のデータ正本。手順・制約の正本は上記 `.cursor/`。
 
 ## doc ディレクトリ構造
 
 ```text
 doc/
-├─ ai_guidelines/
-│  ├─ Project_map.md                  ← このファイル
-│  ├─ Django_UIUX_ガイド.md          ← UI/テンプレート方針（記入式）
-│  ├─ 実装規約.md                    ← 索引 → `.cursor/rules/`
-│  ├─ 安全運用ガイド.md              ← 索引 → `.cursor/rules/` + skills
-│  ├─ エージェント実装記録.md        ← 索引 → `.cursor/skills/agent-session-record/`
-│  ├─ agent_phase3_dod.md            ← 索引 → `.cursor/skills/phase3-doc-updates/`
-│  ├─ ai_setup_check_list.md         ← セキュリティチェックリスト索引
-│  ├─ checklists/                    ← 定期監査（Yes/No データ正本）
-│  │  ├─ README.md
-│  │  ├─ security.md / implementation.md / operations.md
-│  │  ├─ refactoring.md / documentation.md
-│  │  ├─ post_prototype_audit.md / refactor_audit.md
-│  ├─ 試験実装のエラー.md            ← 既知エラー（データ正本）
-│  └─ リファクタリング判断基準.md    ← 索引 → `.cursor/rules/god_class_watch.mdc`
+├─ ai/                              ← エージェント知識層（統合入口）
+│  ├─ README.md                     ← 知識層の地図
+│  ├─ runtime.md                    ← .cursor 実行層の説明
+│  ├─ decisions/README.md           ← 意思決定横断索引
+│  ├─ guidelines/                   ← Project_map・checklists・既知エラー
+│  │  ├─ Project_map.md             ← このファイル
+│  │  ├─ checklists/
+│  │  ├─ 試験実装のエラー.md
+│  │  └─ Django_UIUX_ガイド.md      ← 任意・記入式
+│  └─ sessions/                     ← セッション記録本文
 ├─ Information.md                     ← テスト用ログイン情報（プロジェクト作成後に追加）
 ├─ templates/                         ← 記入用テンプレ（TPL_実機FB 等）
 ├─ reference/                         ← 利用者向け手順・早見表（README.md が目次）
@@ -112,9 +107,10 @@ doc/
 │     ├─ git.md
 │     ├─ markdown.md
 │     └─ ide-chat-enter.md
-├─ records/
-│  ├─ README.md
-│  └─ agent_sessions/
+├─ adr/
+│  ├─ 0001-hatchling-build-backend.md
+│  ├─ 0002-utc-aware-datetime.md
+│  └─ 0003-gas-runtime.md
 └─ specs/
    ├─ 00_プロジェクト概要.md
    ├─ 00_開発日誌.md
@@ -130,19 +126,23 @@ doc/adr/
    └─ 0002-utc-aware-datetime.md
 ```
 
+（adr 0003 等の追記はファイル要約表を更新すること）
+
 ## ファイル要約（1行サマリ）
 
 | ファイル | 要約 |
 |---|---|
-| `doc/ai_guidelines/試験実装のエラー.md` | 既知の実装エラーと対策集。着手前に必読。 |
-| `doc/ai_guidelines/リファクタリング判断基準.md` | 索引 → `.cursor/rules/god_class_watch.mdc`（検証: `checklists/refactoring.md`）。 |
-| `doc/ai_guidelines/実装規約.md` | 索引 → `.cursor/rules/`（命名・PR・テスト・外部 API）。 |
-| `doc/ai_guidelines/安全運用ガイド.md` | 索引 → `.cursor/rules/safe_operations_core.mdc` + skills。 |
-| `doc/ai_guidelines/agent_phase3_dod.md` | 索引 → `.cursor/skills/phase3-doc-updates/SKILL.md`。 |
-| `doc/ai_guidelines/エージェント実装記録.md` | 索引 → `.cursor/skills/agent-session-record/SKILL.md`。 |
-| `doc/ai_guidelines/Django_UIUX_ガイド.md` | Django UI/UX・テンプレート方針（任意・記入式）。 |
-| `doc/ai_guidelines/checklists/README.md` | 定期監査チェックリスト索引（プロトタイプ後・リファクタ時）。 |
-| `doc/ai_guidelines/ai_setup_check_list.md` | セキュリティチェックリスト索引（正: `checklists/security.md`）。 |
+| `doc/ai/README.md` | エージェント知識層の統合入口。 |
+| `doc/ai/decisions/README.md` | 意思決定の横断索引（sessions・ADR・ABC）。 |
+| `doc/ai/guidelines/試験実装のエラー.md` | 既知の実装エラーと対策集。着手前に必読。 |
+| `.cursor/rules/god_class_watch.mdc` | リファクタリング判断（検証: `checklists/refactoring.md`）。 |
+| `.cursor/rules/` 各 `*.mdc` | 命名・Git・テスト・外部 API・安全運用コア等。 |
+| `.cursor/skills/phase3-doc-updates/SKILL.md` | Phase 3 完了後 DoD・doc 更新トリガー。 |
+| `.cursor/skills/agent-session-record/SKILL.md` | 実装セッション記録手順。 |
+| `.cursor/skills/design-decision-record/SKILL.md` | 設計のみ・意思決定記録手順。 |
+| `doc/ai/guidelines/Django_UIUX_ガイド.md` | Django UI/UX・テンプレート方針（任意・記入式）。 |
+| `doc/ai/guidelines/checklists/README.md` | 定期監査チェックリスト索引（プロトタイプ後・リファクタ時）。 |
+| `doc/ai/guidelines/checklists/security.md` | セキュリティチェックリスト（セットアップ・監査）。 |
 | `doc/reference/README.md` | reference 目次・目的別リンク・新規ファイル追加ルール。 |
 | `doc/reference/getting-started/入門ガイド.md` | フォルダ構成の意味・レイヤの考え方・読む順番。 |
 | `doc/reference/getting-started/コード解説.md` | ファイル別コード解説。 |
@@ -152,7 +152,7 @@ doc/adr/
 | `doc/reference/cheatsheets/markdown.md` | Markdown 記法とプレビュー結果の早見表。 |
 | `doc/reference/cheatsheets/ide-chat-enter.md` | Cursor / VS Code AI チャットの Enter キー設定早見表。 |
 | `doc/specs/00_プロジェクト概要.md` | プロジェクトの目的・スコープ・関連 specs への入口（記入式）。 |
-| `doc/specs/00_開発日誌.md` | 開発メモ・実機 FB の時系列ログ（肥大時は `doc/records/` へ分割）。 |
+| `doc/specs/00_開発日誌.md` | 開発メモ・実機 FB の時系列ログ（索引。本文は `doc/ai/sessions/`）。 |
 | `doc/specs/01_ABC見送り・ギャップ台帳.md` | A/B/C ギャップ台帳。見送り・未着手・盲点の理由分類（正本）。 |
 | `doc/specs/02_要件定義.md` | AS-IS/TO-BE、機能・非機能要件（FR/NFR コード付き）、MoSCoW 優先度。 |
 | `doc/specs/03_システム設計.md` | 技術選定、データモデル、画面要件とルーティング。 |
@@ -172,7 +172,10 @@ doc/adr/
 | 実装計画・将来候補 | `doc/specs/06_ROADMAP.md` |
 | 設計・フロー確認 | `doc/specs/03_システム設計.md` |
 | ディレクトリ構成・命名規則 | `doc/specs/05_ディレクトリ構成.md` |
-| 過去のエラーと対策 | `doc/ai_guidelines/試験実装のエラー.md` |
+| 過去のエラーと対策 | `doc/ai/guidelines/試験実装のエラー.md` |
+| 意思決定の横断索引 | `doc/ai/decisions/README.md` |
+| エージェント知識の入口 | `doc/ai/README.md` |
+| 設計のみの意思決定 | `.cursor/skills/design-decision-record/SKILL.md` |
 | 開発ルール（命名・Git・テスト） | `.cursor/rules/` 各 `*.mdc` |
 | ログ・通知・処理量 | `.cursor/rules/safe_operations_core.mdc` / `skills/safe-operations-detail/` |
 | UI/テンプレート変更 | `.cursor/skills/django-ui-changes/SKILL.md` |
@@ -192,5 +195,5 @@ doc/adr/
 | セキュリティチェック（セットアップ） | `.cursor/skills/audit-security/SKILL.md` |
 | プロトタイプ後の総合監査 | `.cursor/skills/audit-post-prototype/SKILL.md` |
 | リファクタ前後の監査 | `.cursor/skills/audit-refactor-full/SKILL.md` |
-| 定期監査の大分類一覧 | `doc/ai_guidelines/checklists/README.md` |
+| 定期監査の大分類一覧 | `doc/ai/guidelines/checklists/README.md` |
 | テスト用アカウント | `doc/Information.md` |

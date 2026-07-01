@@ -5,7 +5,7 @@ description: 試験実装のエラー.md への追記判断とフォーマット
 
 # 既知エラー記録
 
-正本: `doc/ai_guidelines/試験実装のエラー.md`
+正本: `doc/ai/guidelines/試験実装のエラー.md`
 
 ## 記載する条件（いずれか）
 

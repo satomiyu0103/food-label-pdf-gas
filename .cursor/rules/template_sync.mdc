@@ -17,9 +17,7 @@ alwaysApply: true
 |---|---|
 | `.cursor/rules/` `.cursor/skills/` | エージェント基盤。構造・手順の追加変更 |
 | `.cursor/doc/memory_stream.md` | 運用定義および **ファクト追記を含む全文** |
-| `doc/ai_guidelines/` | スタブ・checklists・Project_map の索引構造 |
-| `doc/records/README.md` | 記録ディレクトリの説明（構造のみ） |
-| `doc/records/agent_sessions/` | セッション記録本文（新規・更新ファイル） |
+| `doc/ai/` | README・runtime・decisions 索引・guidelines・sessions |
 | `doc/specs/00_開発日誌.md` | 索引・日次エントリ（記入ルールセクションはテンプレ側で維持） |
 | `AGENTS.md` | クイックリファレンス |
 
@@ -30,7 +28,7 @@ alwaysApply: true
 | トリガー | 同期先（同一相対パス） |
 |---|---|
 | memory_logger によるファクト追記 | `.cursor/doc/memory_stream.md` |
-| agent-session-record によるセッション記録 | `doc/records/agent_sessions/YYYY-MM-DD_*.md` |
+| agent-session-record / design-decision-record によるセッション記録 | `doc/ai/sessions/YYYY-MM-DD_*.md` |
 | 開発日誌索引の追記 | `doc/specs/00_開発日誌.md` |
 
 上記は **プロジェクト側の記録完了直後** にテンプレへコピーする。
@@ -48,7 +46,7 @@ alwaysApply: true
 
 | 種別 | テンプレ同期 | 例 |
 |---|---|---|
-| 運用基盤 | **する** | `memory_logger.mdc` / `agent-session-record` SKILL の改訂、`doc/records/` 構造、`00_開発日誌.md` の **記入ルール** セクション |
+| 運用基盤 | **する** | `memory_logger.mdc` / `agent-session-record` / `design-decision-record` SKILL の改訂、`doc/ai/` 構造、`00_開発日誌.md` の **記入ルール** セクション |
 | 業務固有データ | **しない** | `doc/specs/07_CHANGELOG.md` の業務実装行、`gas/` `src/`、商品 PDF 等 reference |
 
 ## 手順
